@@ -1,0 +1,1 @@
+/home/maksi/nixos/dotfiles/rofi/powermenu/powermenu.sh

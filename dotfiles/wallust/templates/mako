@@ -1,0 +1,14 @@
+anchor=top-center
+max-visible=3
+default-timeout=10000
+
+border-radius=5
+border-size=3
+
+background-color={background}aa
+border-color={color11}
+text-color={foreground}
+
+progress-color={color1}
+
+layer=overlay

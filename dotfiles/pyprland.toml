@@ -1,0 +1,17 @@
+[pyprland]
+plugins = ["scratchpads"]
+
+[scratchpads.volume]
+animation = "fromTop"
+command = "pavucontrol"
+class = "pavucontrol"
+lazy = true
+size = "31% 25%"
+position = "68% 5%"
+
+[scratchpads.update]
+animation = "fromLeft"
+command = "kitty --class scratchpad -e $HOME/nixos/scripts/update_home.sh"
+class = "scratchpad"
+size = "31% 25%"
+position = "1% 5%"
