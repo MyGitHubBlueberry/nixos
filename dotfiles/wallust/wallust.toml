@@ -86,6 +86,7 @@ colors = { src = 'templates/colors.sh', dst = '~/.cache/wallust/colors.sh', pywa
 kitty = { src = 'templates/colors-kitty.conf', dst = '~/.config/kitty/kitty.conf', pywal = true }
 rofi = { src = 'templates/colors-rofi.rasi', dst = '~/nixos/dotfiles/rofi/colors.rasi', pywal = true }
 mako = { src = 'templates/mako', dst = '~/.config/mako/config'}
+dunst = { src = 'templates/mako', dst = '~/.config/dunst/config'}
 xresources = { src = 'templates/colors.Xresources', dst = '~/.Xresources', pywal = true, new_engine = true}
 # gtk = { src = 'templates/gtk.css', dst = '~/.cache/wallust/gtk-colors.css'}
 # gtk_test = { src = 'templates/gtk_test.css', dst = '~/.cache/wallust/gtk-colors.css'}
