@@ -37,14 +37,13 @@ in
 
     home.packages = with pkgs; [
 #for i3
+    xclip
     feh
     picom
     polybar
     dunst
     xorg.xmodmap
 #for i3
-
-    brave
     
     thunderbird
 
