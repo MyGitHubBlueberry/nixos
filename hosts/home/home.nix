@@ -44,7 +44,7 @@ in
     dunst
     xorg.xmodmap
 #for i3
-    
+
     thunderbird
 
     #tubes :)
