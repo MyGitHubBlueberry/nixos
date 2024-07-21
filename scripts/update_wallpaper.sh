@@ -23,6 +23,7 @@ if [[ "$session" = "x11" ]]; then
     rm $temp
     cp $wallpaper $temp
     pkill dunst
+    polybar-msg cmd restart
 else
     swww img $wallpaper -t center #--transition-step 20 --transition-fps 20 -t center
     makoctl reload
@@ -33,6 +34,8 @@ cp ~/.cache/wallust/gtk-colors.css ~/.config/gtk-3.0/
 cp ~/.cache/wallust/gtk-colors.css ~/.config/gtk-4.0/
 
 pkill rofi
+
+# wait 
 
 notify-send "Theme and wallpaper updated" "With image $wal"
 

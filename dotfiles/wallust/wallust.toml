@@ -87,6 +87,7 @@ kitty = { src = 'templates/colors-kitty.conf', dst = '~/.config/kitty/kitty.conf
 rofi = { src = 'templates/colors-rofi.rasi', dst = '~/nixos/dotfiles/rofi/colors.rasi', pywal = true }
 mako = { src = 'templates/mako', dst = '~/.config/mako/config'}
 dunst = { src = 'templates/dunst', dst = '~/.config/dunst/dunstrc'}
+polybar = { src = 'templates/polybar', dst = '~/.config/polybar/config.ini', pywal = true, new_engine = true }
 xresources = { src = 'templates/colors.Xresources', dst = '~/.Xresources', pywal = true, new_engine = true}
 # gtk = { src = 'templates/gtk.css', dst = '~/.cache/wallust/gtk-colors.css'}
 # gtk_test = { src = 'templates/gtk_test.css', dst = '~/.cache/wallust/gtk-colors.css'}
