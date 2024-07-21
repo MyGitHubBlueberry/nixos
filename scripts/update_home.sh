@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
 
+source "$(dirname "$0")/notification_functions.sh"
+
 main() {
     # Run the command in the background and capture the output
-    home_manager_msg=$(home-manager switch --flake $HOME/nixos 2>&1 > /tmp/home_manager_output) &
+    local home_manager_msg=$(home-manager switch --flake $HOME/nixos 2>&1 > /tmp/home_manager_output) &
     update_pid=$!
 
-    icon="$HOME/Pictures/Icons/home-manager.svg"
+    local icon="$HOME/Pictures/Icons/home-manager.svg"
 
-    preupdate_time=3
-    update_time=$(approximate_update_time)
+    local preupdate_time=3
+    local update_time=$(approximate_update_time)
 
-    echo $update_time
+    local id=$(notify_with_progress $preupdate_time "Home-manager" "Evaluating your derivation..." $icon "none" $update_pid)
+    notify_with_progress $update_time "Home-manager" "Updating..." $icon $id $update_pid
 
-    id=$(countdown $preupdate_time "Home-manager" "Evaluating your derivation..." $icon)
-    echo $id
-    countdown $update_time "Home-manager" "Updating..." $icon $id
-    # notify-send -i $icon "Home-manager" "Working on updates..." -r "$id" 
+    if [[ $(ps -p $update_pid > /dev/null) ]]; then 
+        notify-send -i $icon "Home-manager" "Working on updates..." -r "$id" 
+    fi
 
     wait $update_pid
 
@@ -50,36 +52,5 @@ approximate_update_time() {
 
     echo $estimated_time
 }
-
-countdown() {
-    local impossible_id="-1"
-
-    local time=$1
-    local app=$2
-    local message=$3
-    local icon=$4
-    local notification_id=${5:-$impossible_id}
-
-    local sec_rem=$time
-
-    while ps -p $update_pid > /dev/null && [ "$sec_rem" -gt 0 ]; do
-        # Calculate percentage of time passed 
-        elapsed_seconds=$(($time - sec_rem + 1))
-        percentage=$(($elapsed_seconds * 100 / $time))
-
-
-        if [[ "$notification_id" == "$impossible_id" ]]; then #if you want to ubstruct it, don't forget about $persentage in while loop, you, ididot!
-            notification_id=$(notify-send -i $icon -h int:value:$percentage -t 1200 "$app" "$message" -p)
-        else
-            notify-send -i $icon -h int:value:$percentage -t 1200 "$app" "$message" -r "$notification_id" 
-        fi
-
-        sleep 1
-        sec_rem=$((sec_rem - 1))
-    done
-
-    echo $notification_id
-}
-
 
 main

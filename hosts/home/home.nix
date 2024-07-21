@@ -91,7 +91,10 @@ in
     home.file = {
         ".config/wal/templates/colors-nix.yaml".source = ../../dotfiles/pywal/colors-nix.yaml;
         ".config/wal/templates/colors-hyprland.conf".source = ../../dotfiles/pywal/colors-hyprland.conf;
-        ".config/wallust/".source = ../../dotfiles/wallust;
+
+        ".config/wallust".source = ../../dotfiles/wallust;
+        # ".config/wallust/wallust.toml".source = ../../dotfiles/wallust/wallust.toml;
+        # ".config/wallust/wallust/templates".source = ../../dotfiles/wallust/templates;
         ".config/swappy/config".source = ../../dotfiles/swappy;
         ".config/hypr/pyprland.toml".source = ../../dotfiles/pyprland.toml;
 # # Building this configuration will create a copy of 'dotfiles/screenrc' in

@@ -107,6 +107,12 @@
     ];
   };
 
+  programs.coolercontrol = {
+    enable = false; #on unstable branch
+    nvidiaSupport = true;
+  };
+
+
   programs.dconf.enable = true;
   # make nvim defalut
   programs.neovim.enable = true;
@@ -127,7 +133,6 @@
     kitty #terminal?
 
     wl-clipboard
-    clipit
 
     git
     unzip
@@ -137,6 +142,7 @@
     cargo
     clang
     python3
+    nodejs_22
 
     librewolf 
     telegram-desktop

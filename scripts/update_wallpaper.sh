@@ -9,7 +9,8 @@ temp="$HOME/Pictures/Wallpapers/temp-wal.jpg"
 
 # wpg -ns $HOME/Pictures/Wallpapers/$wal
 
-wallust run "$HOME/Pictures/Wallpapers/$wal"
+# wallust run "$HOME/Pictures/Wallpapers/$wal"
+wallust -d ~/nixos/dotfiles/wallust -b full "$HOME/Pictures/Wallpapers/$wal" #we use this because home-manager doesn't wanna update template folder
 
 source "$HOME/.cache/wallust/colors.sh"
 
