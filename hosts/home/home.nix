@@ -36,7 +36,16 @@ in
     home.stateVersion = "24.05"; # Please read the comment before changing.
 
     home.packages = with pkgs; [
+    yazi
+#xmonad
+    ihaskell
+    xterm
+    dmenu
+#bspwm
+    sxhkd
 #for i3
+    xdotool
+    maim #screenshots
     xclip
     feh
     picom
@@ -132,7 +141,7 @@ in
         name = "Bibata-Modern-Classic";
         size = 16;
     };
-    
+
     # enables kvantum override for qt
     # qt = {
     #     enable = true;
@@ -186,15 +195,7 @@ in
         starship = {
             enable = true;
             settings = {
-#toml file here ;)
-# add_newline = false;
-
-# character = {
-#   success_symbol = "[➜](bold green)";
-#   error_symbol = "[➜](bold red)";
-# };
-
-# package.disabled = true;
+                #toml file here ;)
             };
 
         };

@@ -5,4 +5,4 @@ name ()
     notify-send "Input string: $input_string" "$second_string"
 }
 
-name "test 1" "test 2"
+name "tet 1" "test 2"

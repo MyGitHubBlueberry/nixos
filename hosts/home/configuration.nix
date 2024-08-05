@@ -63,13 +63,24 @@
           xkb.layout = "us"; 
           xkb.variant = "";
 
-          desktopManager.gnome.enable = false; # TODO Change
-          windowManager.i3.enable = true;
+          desktopManager.gnome.enable = false; 
+          windowManager.i3.enable = false;
+          windowManager.xmonad = {
+              enable = true;
+              enableContribAndExtras = true;
+          };
+
+          displayManager.gdm = {
+              enable = true;
+              wayland = true;
+              banner = "NixOS, btw...";
+
+              autoSuspend = true;
+          };
       };
 
-
       displayManager.sddm = {
-          enable = true; #was gdm
+          enable = false; #disable gdm before turning on
           wayland.enable = true; 
           theme = "${import ../../packages/sddm-sugar-dark/default.nix { inherit pkgs; }}";
       };
@@ -79,8 +90,8 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true; 
-  hardware.pulseaudio.enable = false; security.rtkit.enable = true; 
+  sound.enable = true; #removed in unstable
+  security.rtkit.enable = true; 
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -130,6 +141,7 @@
   environment.systemPackages = with pkgs; [
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also 
   #  installed by default. wget
+    eww
     kitty #terminal?
 
     wl-clipboard
