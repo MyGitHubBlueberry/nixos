@@ -36,6 +36,11 @@ in
     home.stateVersion = "24.05"; # Please read the comment before changing.
 
     home.packages = with pkgs; [
+#eww
+    gnome.gnome-control-center
+    vlc
+    pamixer
+
     yazi
 #xmonad
     ihaskell
