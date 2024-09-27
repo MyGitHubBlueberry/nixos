@@ -23,9 +23,6 @@ in
     home.username = "maksi";
     home.homeDirectory = "/home/maksi";
 
-
-# targets.genericLinux.enable = true; #for non NixOS distros
-
 # This value determines the Home Manager release that your configuration is
 # compatible with. This helps avoid breakage when a new Home Manager release
 # introduces backwards incompatible changes.
@@ -36,19 +33,23 @@ in
     home.stateVersion = "24.05"; # Please read the comment before changing.
 
     home.packages = with pkgs; [
+    teams-for-linux
+
+    discord
+    btop
 #eww
     gnome.gnome-control-center
     vlc
     pamixer
+    gradience
 
     yazi
 #xmonad
     ihaskell
-    xterm
-    dmenu
 #bspwm
     sxhkd
 #for i3
+    xkb-switch-i3
     xdotool
     maim #screenshots
     xclip
@@ -79,6 +80,7 @@ in
     mako
 
     pavucontrol #audio settings
+    pulseaudioFull
 
     wallust
     # libsForQt5.qtstyleplugin-kvantum #qt app themes
@@ -147,42 +149,28 @@ in
         size = 16;
     };
 
-    # enables kvantum override for qt
-    # qt = {
-    #     enable = true;
-    #     platformTheme.name = "qtct";
-    #     style.name = "kvantum";
-    # };
+#TODO
+    xresources.extraConfig = ''
+      #include "/home/maksi/.cache/wallust/colors.Xresources"
+    '';    
 
     gtk = {
         enable = true;
 
         theme.package = pkgs.whitesur-gtk-theme;
-        theme.name = "WhiteSur-Dark"; #"FlatColor"; #breaks waybar? "WhiteSur-Dark"; 
+        theme.name = "WhiteSur-Dark"; 
 
         cursorTheme.package = pkgs.bibata-cursors;
         cursorTheme.name = "Bibata-Modern-Classic";
         cursorTheme.size = 16;
         
         iconTheme.package = pkgs.tela-circle-icon-theme;
-        iconTheme.name = "Tela-circle"; #"flattrcolor";
+        iconTheme.name = "Tela-circle";
 
         font.package = pkgs.cascadia-code;
         font.name = "CascadiaCodeNF-Regular";
         font.size = 10;
     };
-
-    # xdg.configFile."gtk-4.0/gtk.css" = {
-    #     text = gtkColors;
-    # };
-    #
-    # xdg.configFile."gtk-3.0/gtk.css" = {
-    #     text = gtkColors;
-    # };
-
-    # xdg.configFile."xsettingsd/xsettingsd.conf" = {
-    #     text = ''Net/ThemeName "FlatColor"'';
-    # };
 
     programs = {
         bash = {
@@ -200,7 +188,7 @@ in
         starship = {
             enable = true;
             settings = {
-                #toml file here ;)
+                #i'm fine with the defaults
             };
 
         };
@@ -212,6 +200,5 @@ in
         };
     };
 
-    # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 }

@@ -23,9 +23,10 @@
             heroic
 
             prismlauncher
-            atlauncher
-            portablemc
-            hmcl
+            openjdk17
+
+            wineWowPackages.full
+            winetricks
         ];
 
         environment.sessionVariables = {

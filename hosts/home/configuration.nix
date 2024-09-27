@@ -11,24 +11,30 @@
       ../../modules/nixos/nvidia.nix
       ../../modules/nixos/hyprland.nix
       ../../modules/nixos/gaming.nix
+      ../../modules/nixos/virtualization.nix
     ];
 
   nvidia.enable = true;
   gaming.enable = true;
 
-  # Enable Desktop Environment.
-  hyprland.enable = false; #TODO change
+  virtualization.enable = true;
 
+  # Enable Desktop Environment.
+  hyprland.enable = false;
 
   # Bootloader.
   boot.loader.grub = {
       enable = true;
       device = "nodev";
       efiSupport = true;
-      #useOSProber = true;
+      useOSProber = true;
   };
 
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelModules = ["nvidia_uvm" "nvidia_modeset" "nvidia_drm" "nvidia"];
+  boot.initrd.availableKernelModules = [ "usb_storage" "nvme" "ahci" "sd_mod" "sr_mod" "xhci_pci" ];
+  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
 
   # adding flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -55,21 +61,21 @@
     "uk_UA.UTF-8"; LC_TIME = "uk_UA.UTF-8";
   };
 
+  #for usb to automount
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
   # Enable the X11 windowing system.
   services = {
       xserver = {
-#     # autorun = false;
+          autorun = true;
           enable = true;
-          xkb.layout = "us"; 
-          xkb.variant = "";
-
-          desktopManager.gnome.enable = false; 
-          windowManager.i3.enable = false;
-          windowManager.xmonad = {
-              enable = true;
-              enableContribAndExtras = true;
+          xkb = {
+              layout = "us,ua";
+              options = "grp:win_space_toggle";
           };
 
+          windowManager.i3.enable = true;
+          desktopManager.gnome.enable = false;
           displayManager.gdm = {
               enable = true;
               wayland = true;
@@ -114,7 +120,6 @@
     description = "maksi"; 
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
     ];
   };
 
@@ -141,8 +146,10 @@
   environment.systemPackages = with pkgs; [
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also 
   #  installed by default. wget
+    gparted
+
     eww
-    kitty #terminal?
+    kitty
 
     wl-clipboard
 
@@ -152,8 +159,14 @@
     ripgrep
 
     cargo
+    brave
+
     clang
     python3
+    nodePackages.pyright
+    python312Packages.python-lsp-server
+    lua-language-server
+    rust-analyzer
     nodejs_22
 
     librewolf 
@@ -189,5 +202,4 @@
   # install of this system. Before changing this value read the documentation for this 
   # option (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

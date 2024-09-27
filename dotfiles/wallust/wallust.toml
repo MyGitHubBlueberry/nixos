@@ -68,7 +68,7 @@ palette = "dark16"
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
 # with your images. The reference color for the contrast is the background color.
-#check_contrast = true
+# check_contrast = true
 
 # Color saturation, between [1% and 100%] (OPTIONAL, disabled by default)
 # usually something higher than 50 increases the saturation and below
@@ -80,15 +80,18 @@ palette = "dark16"
 
 
 [templates]
-hyrpland = { src = 'templates/colors-hyprland.conf', dst = '~/nixos/modules/home-manager/colors-hyprland.conf', pywal = true }
-waybar = { src = 'templates/colors-waybar.css', dst = '~/.config/waybar/colors-waybar.css', pywal = true }
+# hyrpland = { src = 'templates/colors-hyprland.conf', dst = '~/nixos/modules/home-manager/colors-hyprland.conf', pywal = true }
+# waybar = { src = 'templates/colors-waybar.css', dst = '~/.config/waybar/colors-waybar.css', pywal = true }
 colors = { src = 'templates/colors.sh', dst = '~/.cache/wallust/colors.sh', pywal = true }
 kitty = { src = 'templates/colors-kitty.conf', dst = '~/.config/kitty/kitty.conf', pywal = true }
 rofi = { src = 'templates/colors-rofi.rasi', dst = '~/nixos/dotfiles/rofi/colors.rasi', pywal = true }
 mako = { src = 'templates/mako', dst = '~/.config/mako/config'}
 dunst = { src = 'templates/dunst', dst = '~/.config/dunst/dunstrc'}
-polybar = { src = 'templates/polybar', dst = '~/.config/polybar/config.ini', pywal = true, new_engine = true }
-xresources = { src = 'templates/colors.Xresources', dst = '~/.Xresources', pywal = true, new_engine = true}
+# polybar = { src = 'templates/polybar', dst = '~/.config/polybar/config.ini', pywal = true, new_engine = true }
+xresources = { src = 'templates/colors.Xresources', dst = '~/.cache/wallust/colors.Xresources', pywal = true}
+scss = { src = 'templates/colors.scss', dst = '~/.config/eww/scripts/colors/my_colors.scss', pywal = true}
+eww = { src = 'templates/eww-template.scss', dst = '~/.config/eww/scripts/colors/template.scss', pywal = true}
+# color11 = { src = 'templates/color11', dst = '~/.config/xmonad/color11', pywal = true }
 # gtk = { src = 'templates/gtk.css', dst = '~/.cache/wallust/gtk-colors.css'}
 # gtk_test = { src = 'templates/gtk_test.css', dst = '~/.cache/wallust/gtk-colors.css'}
 # gtk2 = { src = 'templates/gtk2.base', dst = '~/.local/share/themes/FlatColor/gtk-2.0/gtkrc'}

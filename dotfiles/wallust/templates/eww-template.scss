@@ -1,0 +1,17 @@
+// Special
+$foreground: {foreground};
+$background: {background};
+/* $cursor: {cursor}; */
+
+$black: #000000;
+$white: #ffffff;
+
+$bg-main: mix({background}, {color1}, 90%);
+
+$bg-second: mix(mix({color11}, {color1}), $background, 55%);
+$bg-second-hover: mix(mix(mix({color11}, {color1}), $background, 55%), {color15}, 90%);
+
+$main: mix({color10}, {color3});
+$main-hover: mix(mix({color10}, {color3}), {color15}, 90%);
+$second: mix(mix({color11}, {color10}), {background}, 20%);
+$second-hover: mix(mix(mix({color11}, {color10}), {background}, 20%), {color15}, 90%);

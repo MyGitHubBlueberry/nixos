@@ -33,9 +33,6 @@
         ({
             programs.hyprland.enable = true;
 
-            # desktop portals
-            xdg.portal.enable = true;
-            xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk /*wlr */ ];
             environment = {
                 sessionVariables = {
 
