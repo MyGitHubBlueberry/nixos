@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
+LOCK_FILE="/tmp/update_wallpaper.lock"
 wallpaper=""
 temp="$HOME/Pictures/Wallpapers/temp-wal.jpg"
 session=$(loginctl show-session "$(awk '/tty/ {print $1}' <(loginctl))" -p Type | awk -F= '{print $2}')
-
-echo "first arg is $1"
-echo "second arg is $2"
-echo "third arg is $3"
-echo "wallpaper is $wallpaper"
+cache="$HOME/.cache/eww/preferences.txt"
 
 get_wallpaper() {
     case $1 in
@@ -25,23 +22,28 @@ get_wallpaper() {
 change_mode() {
     case $1 in
         "light")
-            wallust -d ~/nixos/dotfiles/wallust -b full "$wallpaper" --threshold 11 -p light16 -c labmixed
+            wallust run -C ~/nixos/dotfiles/wallust/wallust-light.toml "$wallpaper"
+            echo "light" > "$cache"
+            # eww update current_mode="light"
+            ;;
+        "dark")
+            wallust run "$wallpaper"
+            echo "dark" > "$cache"
+            # eww update current_mode="dark"
             ;;
         *)
-            wallust run "$wallpaper"
-            # wallust -d ~/nixos/dotfiles/wallust -b full "$wallpaper" -p dark16 #we use6 this because home-manager doesn't wanna update template folder
+            current_mode=$(eww get current_mode)
+            change_mode "$current_mode"
             ;;
-        # *)
-            # current_mode=$(eww get current_mode)
-            # change_mode "$current_mode"
-            # ;;
-    esac    
+    esac
 }
 
 restart() {
     if [[ "$session" = "x11" ]]; then
-        rm -f "$temp"
-        cp "$wallpaper" "$temp"
+        if [[ "$1" != "keep" ]]; then
+            rm -f "$temp"
+            cp "$wallpaper" "$temp"
+        fi
         feh --bg-fill "$wallpaper"
         pkill dunst
         xrdb ~/.Xresources
@@ -51,10 +53,25 @@ restart() {
         makoctl reload
     fi
     pkill rofi
+    eww update current_mode="$(< "$cache")"
 }
+
+# Check if the lock file exists
+if [ -e "$LOCK_FILE" ]; then
+    echo "Script is already running."
+    exit 1
+fi
+
+# Create a lock file
+touch "$LOCK_FILE"
 
 wallpaper=$(get_wallpaper "$1")
 change_mode "$2"
-restart
+restart "$1"
 
 notify-send "Theme and wallpaper updated" "With image $(basename "$wallpaper")"
+
+# Clean up the lock file upon script exit
+trap "rm -f $LOCK_FILE" EXIT
+
+exit 0
