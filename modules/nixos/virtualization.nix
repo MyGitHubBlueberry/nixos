@@ -14,8 +14,8 @@
                   enableExtensionPack = true;
               };
               guest = {
-                  enable = true;
-                  draganddrop = true;
+                  enable = false; #was true and caused long loading time when rebuild switch
+                  dragAndDrop = true;
               };
           };
 

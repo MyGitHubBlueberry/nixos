@@ -64,6 +64,7 @@
   #for usb to automount
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+
   # Enable the X11 windowing system.
   services = {
       xserver = {
@@ -96,7 +97,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true; #removed in unstable
   security.rtkit.enable = true; 
   services.pipewire = {
     enable = true;
@@ -146,6 +146,8 @@
   environment.systemPackages = with pkgs; [
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also 
   #  installed by default. wget
+    obs-studio
+
     gparted
 
     eww
@@ -161,12 +163,20 @@
     cargo
     brave
 
+    gdb #debugger
+
     clang
+    clang-tools
+    libcxx
+    gcc
     python3
-    nodePackages.pyright
+    pyright
     python312Packages.python-lsp-server
     lua-language-server
+    bash-language-server
     rust-analyzer
+    rustc
+    rustlings
     nodejs_22
 
     librewolf 
