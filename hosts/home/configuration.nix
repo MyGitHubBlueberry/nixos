@@ -187,6 +187,7 @@
     slurp
     swappy
     jq #for geometry for window screenshots
+    wmctrl
 
     #sddm theme dependencies
     libsForQt5.qt5.qtquickcontrols2   
