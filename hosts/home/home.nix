@@ -177,6 +177,11 @@ in
         bash = {
             enable = true;
             shellAliases = myAliases;
+            initExtra = ''
+                precmd() {
+                    echo -e "\a"
+                }
+            '';
         };
 
         zsh = {
@@ -184,6 +189,11 @@ in
             shellAliases = myAliases;
             autosuggestion.enable = true;
             enableCompletion = true;
+            initExtra = ''
+                precmd() {
+                    echo -e "\a"
+                }
+            '';
         };
 
         starship = {
