@@ -188,6 +188,7 @@
     swappy
     jq #for geometry for window screenshots
     wmctrl
+    ssh-askpass-fullscreen
 
     #sddm theme dependencies
     libsForQt5.qt5.qtquickcontrols2   

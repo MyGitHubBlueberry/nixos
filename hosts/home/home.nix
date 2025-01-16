@@ -8,6 +8,12 @@ let
     gtkColors = ''
         @import './gtk-colors.css';
     '';
+
+    notifyWhenFinished = ''
+        precmd() {
+            echo -ne "\a"
+        }
+    '';
 in
 
 {
@@ -177,11 +183,7 @@ in
         bash = {
             enable = true;
             shellAliases = myAliases;
-            initExtra = ''
-                precmd() {
-                    echo -e "\a"
-                }
-            '';
+            initExtra = notifyWhenFinished;
         };
 
         zsh = {
@@ -189,11 +191,7 @@ in
             shellAliases = myAliases;
             autosuggestion.enable = true;
             enableCompletion = true;
-            initExtra = ''
-                precmd() {
-                    echo -e "\a"
-                }
-            '';
+            initExtra = notifyWhenFinished;
         };
 
         starship = {
