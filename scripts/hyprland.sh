@@ -5,7 +5,8 @@ swww init &
 # setting wallpaper
 bash ~/Documents/update_wallpaper.sh &
 
-#adding the waybar
-waybar &
+eww open bar &
+
+hyprctl setcursor Bibata-Modern-Classic 16
 
 mako

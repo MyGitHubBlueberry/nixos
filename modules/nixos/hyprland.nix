@@ -35,7 +35,7 @@
 
             environment = {
                 sessionVariables = {
-
+                    HYPRCURSOR_SIZE = "16";
                 };
 
                 systemPackages = with pkgs; [

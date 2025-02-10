@@ -76,7 +76,6 @@
           };
 
           windowManager.i3.enable = true;
-          desktopManager.gnome.enable = false;
           displayManager.gdm = {
               enable = true;
               wayland = true;
@@ -133,6 +132,10 @@
   # make nvim defalut
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
+  environment.variables.EDITOR = "nvim";
+  environment.variables.VISUAL = "nvim";
+
+  environment.variables.XCURSOR_SIZE = "16";
 
   # make zsh default
   programs.zsh.enable = true;
@@ -159,12 +162,16 @@
     unzip
     wget
     ripgrep
+    man-pages
 
     cargo
     brave
 
     gdb #debugger
 
+    SDL2
+    valgrind
+    gnumake
     clang
     clang-tools
     libcxx
@@ -175,6 +182,7 @@
     lua-language-server
     bash-language-server
     rust-analyzer
+    rustfmt
     rustc
     rustlings
     nodejs_22

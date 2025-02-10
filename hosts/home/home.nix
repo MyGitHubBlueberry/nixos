@@ -10,6 +10,8 @@ let
     '';
 
     notifyWhenFinished = ''
+        export KALEIDOSCOPE_DIR=$HOME/Downloads/Kaleidoscope
+
         precmd() {
             echo -ne "\a"
         }
@@ -41,8 +43,9 @@ in
     home.packages = with pkgs; [
     teams-for-linux
     slack
-
-    discord
+    (discord.override {
+         withVencord = true;
+     })
     btop
 #eww
     gnome-control-center
@@ -62,7 +65,6 @@ in
     xclip
     feh
     picom
-    polybar
     dunst
     xorg.xmodmap
 #for i3
@@ -76,7 +78,6 @@ in
 
     todo
 
-    waybar
     libnotify #dependency
     swww #wallpaper
     rofi-wayland #app access
