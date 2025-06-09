@@ -1,0 +1,26 @@
+{ lib, config, pkgs, ... }:
+
+{
+    options.windowManager.enable = lib.mkEnableOption "enable window manager";
+    imports = [
+        ./hyprland.nix
+        ./i3.nix
+    ];
+    config.environment.systemPackages = with pkgs; [
+        eww
+        xorg.xmodmap #for switching right alt
+        rofi-wayland #app access
+        xfce.thunar #file manager
+        xfce.xfce4-settings
+        pavucontrol #audio settings
+        pulseaudioFull
+        wallust #for pretty colors
+        swappy #for viewing pictures
+        ssh-askpass-fullscreen #verification for system update
+        jq #for scripts and eww
+        gnome-clocks
+        gnome-calculator
+        gnome-calendar
+    ];
+
+}

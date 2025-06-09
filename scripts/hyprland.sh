@@ -3,8 +3,9 @@
 # initialize wallpaper daemon
 swww init &
 # setting wallpaper
-bash ~/Documents/update_wallpaper.sh &
+bash ./update_wallpaper.sh &
 
+bash ./set_kb_layouts.sh &
 eww open bar &
 
 hyprctl setcursor Bibata-Modern-Classic 16

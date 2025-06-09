@@ -10,8 +10,6 @@ let
     '';
 
     notifyWhenFinished = ''
-        export KALEIDOSCOPE_DIR=$HOME/Downloads/Kaleidoscope
-
         precmd() {
             echo -ne "\a"
         }
@@ -30,7 +28,6 @@ in
 
     home.username = "maksi";
     home.homeDirectory = "/home/maksi";
-
 # This value determines the Home Manager release that your configuration is
 # compatible with. This helps avoid breakage when a new Home Manager release
 # introduces backwards incompatible changes.
@@ -40,85 +37,50 @@ in
 # release notes.
     home.stateVersion = "24.05"; # Please read the comment before changing.
 
+    nixpkgs.config.allowUnfree = true;
+    
     home.packages = with pkgs; [
-    teams-for-linux
     slack
     (discord.override {
          withVencord = true;
-     })
+    })
     btop
 #eww
     gnome-control-center
     vlc
     pamixer
-    gradience
 
     yazi
-#xmonad
-    ihaskell
-#bspwm
-    sxhkd
-#for i3
-    xkb-switch-i3
-    xdotool
+
     maim #screenshots
-    xclip
-    feh
-    picom
-    dunst
-    xorg.xmodmap
-#for i3
 
-    thunderbird
+    thunderbird #email
 
-    #tubes :)
     spotube
+    spotify
 
     onlyoffice-bin
-
     todo
 
-    libnotify #dependency
-    swww #wallpaper
-    rofi-wayland #app access
-
-    #file manager
-    dolphin
-    libsForQt5.kio-extras
-    mako
-
-    pavucontrol #audio settings
-    pulseaudioFull
-
-    wallust
-    # libsForQt5.qtstyleplugin-kvantum #qt app themes
-    # gradience #handles gtk themes
-    # wpgtk
-
+    obs-studio
+    teams-for-linux
     zoom-us
-# # It is sometimes useful to fine-tune packages, for example, by applying
-# # overrides. You can do that directly here, just don't forget the
-# # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-# # fonts?
-    (nerdfonts.override { fonts = [ "CascadiaCode" "CascadiaMono" "FantasqueSansMono"  "Tinos"]; })
-
 # # You can also create simple shell scripts directly inside your
 # # configuration. For example, this adds a command 'my-hello' to your
 # # environment:
 # (pkgs.writeShellScriptBin "my-hello" ''
 #   echo "Hello, ${config.home.username}!"
 # '')
-   ];
+    ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
 # plain files is through 'home.file'.
     home.file = {
         ".config/wal/templates/colors-nix.yaml".source = ../../dotfiles/pywal/colors-nix.yaml;
         ".config/wal/templates/colors-hyprland.conf".source = ../../dotfiles/pywal/colors-hyprland.conf;
-
         ".config/wallust".source = ../../dotfiles/wallust;
-        # ".config/wallust/wallust.toml".source = ../../dotfiles/wallust/wallust.toml;
-        # ".config/wallust/templates".source = ../../dotfiles/wallust/templates;
+# ".config/wallust/wallust.toml".source = ../../dotfiles/wallust/wallust.toml;
+# ".config/wallust/templates".source = ../../dotfiles/wallust/templates;
         ".config/swappy/config".source = ../../dotfiles/swappy;
         ".config/hypr/pyprland.toml".source = ../../dotfiles/pyprland.toml;
 # # Building this configuration will create a copy of 'dotfiles/screenrc' in
@@ -159,8 +121,8 @@ in
 
 #TODO
     xresources.extraConfig = ''
-      #include "/home/maksi/.cache/wallust/colors.Xresources"
-    '';    
+#include "/home/maksi/.cache/wallust/colors.Xresources"
+        '';    
 
     gtk = {
         enable = true;
@@ -171,7 +133,7 @@ in
         cursorTheme.package = pkgs.bibata-cursors;
         cursorTheme.name = "Bibata-Modern-Classic";
         cursorTheme.size = 16;
-        
+
         iconTheme.package = pkgs.tela-circle-icon-theme;
         iconTheme.name = "Tela-circle";
 
@@ -192,13 +154,13 @@ in
             shellAliases = myAliases;
             autosuggestion.enable = true;
             enableCompletion = true;
-            initExtra = notifyWhenFinished;
+            initContent = notifyWhenFinished;
         };
 
         starship = {
             enable = true;
             settings = {
-                #i'm fine with the defaults
+#i'm fine with the defaults
             };
 
         };

@@ -21,7 +21,7 @@
                 ];
 
                 input = {
-                    kb_layout = "us, ua, de";
+                    kb_layout = "us, ua";
 # kb_variant =
 # kb_model =
                     kb_options = "grp:win_space_toggle, MOD5:alt";
@@ -33,16 +33,16 @@
                         natural_scroll = "no";
                     };
 
-                    sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+                    sensitivity = 0;
                 };
 
                 general = {
                     gaps_in = 5;
                     gaps_out = 5;
-                    border_size = 3;
-# "col.active_border" = "$color11 $background $background $color14 45deg";
-                    "col.active_border" = "$color15";#"rgba(ffffffee)";
-                    "col.inactive_border" = "$color11";
+                    border_size = 2;
+                    "col.active_border" = "$color14 $color12 $color11 $color12 $color14 45deg";
+                    # "col.active_border" = "$color15";#"rgba(ffffffee)";
+                    "col.inactive_border" = "$color8";
 
                     layout = "dwindle";
 
@@ -50,24 +50,19 @@
                     allow_tearing = false;
                 };
 
+                # See https://wiki.hyprland.org/Configuring/Variables/ for more
                 decoration = {
-# See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-                    rounding = 10;
-                    inactive_opacity = 0.9;
-                    active_opacity = 0.95;
-                    fullscreen_opacity = 1;
-
+                    dim_inactive = true;
+                    dim_strength = 0.1;
                     blur = {
                         enabled = true;
                         size = 3;
                         passes = 1;
                     };
-
-                    # drop_shadow = "yes";
-                    # shadow_range = 4;
-                    # shadow_render_power = 3;
-                    # "col.shadow" = "rgba(1a1a1aee)";
+                    shadow = {
+                        enabled = true;
+                        range = 6;
+                    };
                 };
 
                 animations = {
@@ -76,14 +71,13 @@
 # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
                     bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
                     animation = [
                         "windows, 1, 7, myBezier"
-                            "windowsOut, 1, 7, default, popin 80%"
-                            "border, 1, 10, default"
-                            "borderangle, 1, 8, default"
-                            "fade, 1, 7, default"
-                            "workspaces, 1, 6, default"
+                        "windowsOut, 1, 7, default, popin 80%"
+                        "border, 1, 10, default"
+                        "borderangle, 1, 8, default"
+                        "fade, 1, 7, default"
+                        "workspaces, 1, 6, default"
                     ];
                 };
 
@@ -112,46 +106,18 @@
 
                 bind =
                     [
-                        "mode=tiling SUPER, h, resizeactive, -10 0"
-                        "mode=tiling SUPER, j, resizeactive, 0 10"
-                        "mode=tiling SUPER, k, resizeactive, 0 -10"
-                        "mode=tiling SUPER, l, resizeactive, 10 0"
+                        "$mod, h, movefocus, l"
+                        "$mod, l, movefocus, r"
+                        "$mod, k, movefocus, u"
+                        "$mod, j, movefocus, d"
 
-                        "mode=floating SUPER, h, moveactive, -30 0"
-                        "mode=floating SUPER, j, moveactive, 0 30"
-                        "mode=floating SUPER, k, moveactive, 0 -30"
-                        "mode=floating SUPER, l, moveactive, 30 0"
+                        "$mod SHIFT, h, swapwindow, l"
+                        "$mod SHIFT, l, swapwindow, r"
+                        "$mod SHIFT, k, swapwindow, u"
+                        "$mod SHIFT, j, swapwindow, d"
 
-                        "MOD5, Escape, exec, ~/nixos/scripts/rofi/powermenu.sh" 
-                        "MOD5, Space, exec, ~/nixos/scripts/rofi/launcher.sh" 
-                        "MOD5, T, exec, kitty"
-                        "MOD5, Q, killactive"
-                        "MOD5 SHIFT, Q, exit"
-                        "MOD5, E, exec, dolphin"
-                        "MOD5, F, togglefloating"
-                        "MOD5, R, exec, wofi --show drun"
-                        "MOD5, P, pseudo"
-                        "MOD5, Tab, togglesplit"
-                        "MOD5, Return, fullscreen"
-                        "MOD5, h, movefocus, l"
-                        "MOD5, l, movefocus, r"
-                        "MOD5, k, movefocus, u"
-                        "MOD5, j, movefocus, d"
-                        "MOD5 SHIFT, h, swapwindow, l"
-                        "MOD5 SHIFT, l, swapwindow, r"
-                        "MOD5 SHIFT, k, swapwindow, u"
-                        "MOD5 SHIFT, j, swapwindow, d"
-                        "MOD5, S, togglespecialworkspace, magic"
-                        "MOD5 SHIFT, S, movetoworkspace, special:magic"
-                        "MOD5, bracketleft, workspace, e-1"
-                        "MOD5, bracketright, workspace, e+1"
-                        "MOD5, w, exec, bash ~/nixos/scripts/update_wallpaper.sh"
-                        "MOD5, b, exec, bash ~/nixos/scripts/restart_waybar.sh"
-                        "MOD5, c, exec, bash ~/nixos/scripts/rofi/screenshot.sh"
-                        "MOD5, equal, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+"
-                        "MOD5, minus, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-"
-                        "MOD5, v, exec, pypr toggle volume"
-                        "MOD5, u, exec, pypr show update"
+                        "$mod, Tab, focuscurrentorlast"
+                        "$mod, m, togglesplit"
 
                         "$mod, Escape, exec, ~/nixos/scripts/rofi/powermenu.sh" 
                         "$mod, Space, exec, ~/nixos/scripts/rofi/launcher.sh" 
@@ -161,17 +127,8 @@
                         "$mod, E, exec, dolphin"
                         "$mod, F, togglefloating"
                         "$mod, R, exec, wofi --show drun"
-                        "$mod, P, pseudo"
-                        "$mod, Tab, togglesplit"
+                        # "$mod, P, pseudo"
                         "$mod, Return, fullscreen"
-                        "$mod, h, movefocus, l"
-                        "$mod, l, movefocus, r"
-                        "$mod, k, movefocus, u"
-                        "$mod, j, movefocus, d"
-                        "$mod SHIFT, h, swapwindow, l"
-                        "$mod SHIFT, l, swapwindow, r"
-                        "$mod SHIFT, k, swapwindow, u"
-                        "$mod SHIFT, j, swapwindow, d"
                         "$mod, S, togglespecialworkspace, magic"
                         "$mod SHIFT, S, movetoworkspace, special:magic"
                         "$mod, bracketleft, workspace, e-1"
@@ -182,7 +139,16 @@
                         "$mod, equal, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+"
                         "$mod, minus, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-"
                         "$mod, v, exec, pypr toggle volume"
-                        "$mod, u, exec, pypr show update"
+                        # "$mod, u, exec, pypr show update"
+
+                        "$mod, u, exec, exec eww update open_update_menu=true"
+                        # "$mod, u, submap, update"
+                        # ", h, exec, /home/maksi/nixos/scripts/update_home.sh; eww update open_update_menu=false"
+                        # ", f, exec, /home/maksi/nixos/scripts/update_flake.sh; eww update open_update_menu=false"
+                        # ", f, submap, reset"
+                        # ", s, exec, /home/maksi/nixos/scripts/update_nixos.sh; eww update open_update_menu=false"
+                        # ", s, submap, reset"
+                        # ", escape, submap, reset"
                         ]
                         ++ (
 # workspaces
@@ -210,12 +176,13 @@
 
                 exec-once = [
                     "bash ~/nixos/scripts/hyprland.sh"
-                    "pypr"
-                    "[workspace 1 silent] librewolf"
-                    "[workspace 2 silent] telegram-desktop"
-                    "[workspace 2 silent] thunderbird"
+                        "pypr"
+                        "[workspace 1 silent] brave --use-gl=desktop"
+                        "[workspace 2 silent] telegram-desktop"
+                        "[workspace 2 silent] discord"
+                        "[workspace 7 silent] thunderbird"
                 ];
-                
+
                 "$scratchpad" = "class:^(scratchpad)$";
 
                 windowrule = [
@@ -226,6 +193,48 @@
                     "workspace special silent,$scratchpad"
                 ];
             };
+            extraConfig = ''
+                bind = $mod, U, submap, update
+                bind = $mod, U, exec, eww update open_update_menu=true
+
+                submap = update
+
+                bind = , H, exec, /home/maksi/nixos/scripts/update_home.sh; eww update open_update_menu=false
+                bind = , H, submap, reset
+                bind = , F, exec, /home/maksi/nixos/scripts/update_flake.sh; eww update open_update_menu=false
+                bind = , F, submap, reset
+                bind = , S, exec, /home/maksi/nixos/scripts/update_nixos.sh; eww update open_update_menu=false
+                bind = , S, submap, reset
+                bind = , Return, exec, eww update open_update_menu=false
+                bind = , Return, submap, reset
+                bind = , Escape, exec, eww update open_update_menu=false
+                bind = , Escape, submap, reset
+                bind = $mod, U, exec, eww update open_update_menu=false
+                bind = $mod, U, submap, reset
+
+                submap = reset
+
+                bind = $mod, g, submap, group
+
+                submap = group
+
+                bind = , g, togglegroup
+                bind = , j, changegroupactive, b
+                bind = , k, changegroupactive, f
+                bind = SHIFT, j, movegroupwindow, b
+                bind = SHIFT, k, movegroupwindow, f
+
+                bind = $mod, h, movewindoworgroup, l
+                bind = $mod, k, movewindoworgroup, u
+                bind = $mod, j, movewindoworgroup, d
+                bind = $mod, l, movewindoworgroup, r
+
+                bind = , Return, submap, reset
+                bind = , Escape, submap, reset
+                bind = $mod, g, submap, reset
+
+                submap = reset
+                '';
         };
     };
 }

@@ -62,8 +62,6 @@ run_cmd() {
 		elif [[ $1 == '--reboot' ]]; then
 			systemctl reboot
 		elif [[ $1 == '--suspend' ]]; then
-			mpc -q pause
-			amixer set Master mute
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
             loginctl lock-session
@@ -83,11 +81,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
+		i3lock 5 3
         ;;
     $suspend)
 		run_cmd --suspend
