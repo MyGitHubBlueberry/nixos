@@ -1,176 +1,40 @@
 { config, pkgs, ... }:
-let 
-    myAliases = {
-        ".." = "cd ..";
-        la = "ls -a";
-    };
-
-    gtkColors = ''
-        @import './gtk-colors.css';
-    '';
-
-    notifyWhenFinished = ''
-        precmd() {
-            echo -ne "\a"
-        }
-    '';
-in
-
 {
     imports = [
-        ../../modules/home-manager/hyprconfig.nix
-        ../../modules/home-manager/notifications/mako.nix
-        # ../../modules/home-manager/notifications/dunst.nix
+        ../defaultHome.nix
     ];
 
     hyprconfig.enable = true;
-    mako.enable = false;
 
-    home.username = "maksi";
-    home.homeDirectory = "/home/maksi";
-# This value determines the Home Manager release that your configuration is
-# compatible with. This helps avoid breakage when a new Home Manager release
-# introduces backwards incompatible changes.
-#
-# You should not change this value, even if you update Home Manager. If you do
-# want to update the value, then make sure to first check the Home Manager
-# release notes.
-    home.stateVersion = "24.05"; # Please read the comment before changing.
+    home = {
+        username = "maksi";
+        homeDirectory = "/home/maksi";
 
-    nixpkgs.config.allowUnfree = true;
-    
-    home.packages = with pkgs; [
-    slack
-    (discord.override {
-         withVencord = true;
-    })
-    btop
-#eww
-    gnome-control-center
-    vlc
-    pamixer
+        stateVersion = "24.05";
+        packages = with pkgs; [
+            slack
+            (discord.override {
+                 withVencord = true;
+            })
+            btop
 
-    yazi
+            gnome-control-center
+            vlc
+            pamixer
 
-    maim #screenshots
+            yazi
 
-    thunderbird #email
+            thunderbird #email
 
-    spotube
-    spotify
+            spotube
+            spotify
 
-    onlyoffice-bin
-    todo
+            onlyoffice-bin
+            todo
 
-    obs-studio
-    teams-for-linux
-    zoom-us
-# # You can also create simple shell scripts directly inside your
-# # configuration. For example, this adds a command 'my-hello' to your
-# # environment:
-# (pkgs.writeShellScriptBin "my-hello" ''
-#   echo "Hello, ${config.home.username}!"
-# '')
-    ];
-
-# Home Manager is pretty good at managing dotfiles. The primary way to manage
-# plain files is through 'home.file'.
-    home.file = {
-        ".config/wal/templates/colors-nix.yaml".source = ../../dotfiles/pywal/colors-nix.yaml;
-        ".config/wal/templates/colors-hyprland.conf".source = ../../dotfiles/pywal/colors-hyprland.conf;
-        ".config/wallust".source = ../../dotfiles/wallust;
-# ".config/wallust/wallust.toml".source = ../../dotfiles/wallust/wallust.toml;
-# ".config/wallust/templates".source = ../../dotfiles/wallust/templates;
-        ".config/swappy/config".source = ../../dotfiles/swappy;
-        ".config/hypr/pyprland.toml".source = ../../dotfiles/pyprland.toml;
-# # Building this configuration will create a copy of 'dotfiles/screenrc' in
-# # the Nix store. Activating the configuration will then make '~/.screenrc' a
-# # symlink to the Nix store copy.
-# ".screenrc".source = dotfiles/screenrc;
-
-# # You can also set the file content immediately.
-# ".gradle/gradle.properties".text = ''
-#   org.gradle.console=verbose
-#   org.gradle.daemon.idletimeout=3600000
-# '';
+            obs-studio
+            teams-for-linux
+            zoom-us
+            ];
     };
-
-# Home Manager can also manage your environment variables through
-# 'home.sessionVariables'. If you don't want to manage your shell through Home
-# Manager then you have to manually source 'hm-session-vars.sh' located at
-# either
-#
-#  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-#
-# or
-#
-#  /etc/profiles/per-user/maksi/etc/profile.d/hm-session-vars.sh
-#
-    home.sessionVariables = {
-        TERM = "kitty";
-        TERMINAL = "kitty";
-    };
-
-    home.pointerCursor = {
-        gtk.enable = true;
-        x11.enable = true;
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Classic";
-        size = 16;
-    };
-
-#TODO
-    xresources.extraConfig = ''
-#include "/home/maksi/.cache/wallust/colors.Xresources"
-        '';    
-
-    gtk = {
-        enable = true;
-
-        theme.package = pkgs.whitesur-gtk-theme;
-        theme.name = "WhiteSur-Dark"; 
-
-        cursorTheme.package = pkgs.bibata-cursors;
-        cursorTheme.name = "Bibata-Modern-Classic";
-        cursorTheme.size = 16;
-
-        iconTheme.package = pkgs.tela-circle-icon-theme;
-        iconTheme.name = "Tela-circle";
-
-        font.package = pkgs.cascadia-code;
-        font.name = "CascadiaCodeNF-Regular";
-        font.size = 10;
-    };
-
-    programs = {
-        bash = {
-            enable = true;
-            shellAliases = myAliases;
-            initExtra = notifyWhenFinished;
-        };
-
-        zsh = {
-            enable = true;
-            shellAliases = myAliases;
-            autosuggestion.enable = true;
-            enableCompletion = true;
-            initContent = notifyWhenFinished;
-        };
-
-        starship = {
-            enable = true;
-            settings = {
-#i'm fine with the defaults
-            };
-
-        };
-
-        git = {
-            enable = true;
-            userName  = "MyGitHubBlueberry";
-            userEmail = "MyGitHubBlueberry@gmail.com";
-        };
-    };
-
-    programs.home-manager.enable = true;
 }

@@ -3,7 +3,6 @@
 {
     imports = [ 
     ./hardware-configuration.nix 
-    ../default.nix
     ];
     networking.hostName = "pc";
 

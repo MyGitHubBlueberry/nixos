@@ -24,18 +24,26 @@
               specialArgs = { inherit inputs; };
               modules = [
                   config
-                  ./hosts/default.nix
+                  ./hosts/defaultConf.nix
+              ];
+            };
+        mkHome = config:
+            home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              specialArgs = { inherit inputs; };
+              modules = [ 
+                  config
+                  ./hosts/defaultHome.nix
               ];
             };
     in {
         nixosConfigurations = {
             pc = mkSystem ./hosts/pc/configuration.nix;
+            laptop = mkSystem ./hosts/laptop/configuration.nix;
         }; 
-        homeConfigurations.maksi = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ 
-                ./hosts/pc/home.nix
-            ];
+        homeConfigurations = {
+            "maksi@pc" = mkHome ./hosts/pc/home.nix;
+            "maksi@laptop" = mkHome ./hosts/laptop/home.nix;
         };
     };
 }

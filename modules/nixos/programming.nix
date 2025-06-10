@@ -3,7 +3,7 @@
 {
     options.programming.enable = lib.mkEnableOption "add packages for programming";
 
-    config = lib.mkIf config.gaming.enable {
+    config = lib.mkIf config.programming.enable {
         environment.systemPackages = with pkgs; [
             git
             unzip
