@@ -30,7 +30,7 @@
                     follow_mouse = 0;
 
                     touchpad = {
-                        natural_scroll = "no";
+                        natural_scroll = true;
                     };
 
                     sensitivity = 0;
@@ -90,7 +90,10 @@
 # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
                 gestures = {
 # See https://wiki.hyprland.org/Configuring/Variables/ for more
-                    workspace_swipe = "off";
+                    workspace_swipe = true;
+                    workspace_swipe_forever = true;
+                    workspace_swipe_distance = 200;
+                    workspace_swipe_cancel_ratio = 0.3;
                 };
 
                 misc = {
