@@ -18,21 +18,20 @@ in
 
 {
     imports = [
-        ../../modules/home-manager/hyprconfig.nix
-        ../../modules/home-manager/notifications/mako.nix
+        ../modules/home-manager/hyprconfig.nix
+        ../modules/home-manager/notifications/mako.nix
     ];
 
     hyprconfig.enable = true;
-    nixpkgs.config.allowUnfree = true;
     
     home.file = {
-        ".config/wal/templates/colors-nix.yaml".source = ../../dotfiles/pywal/colors-nix.yaml;
-        ".config/wal/templates/colors-hyprland.conf".source = ../../dotfiles/pywal/colors-hyprland.conf;
-        ".config/wallust".source = ../../dotfiles/wallust;
-# ".config/wallust/wallust.toml".source = ../../dotfiles/wallust/wallust.toml;
-# ".config/wallust/templates".source = ../../dotfiles/wallust/templates;
-        ".config/swappy/config".source = ../../dotfiles/swappy;
-        ".config/hypr/pyprland.toml".source = ../../dotfiles/pyprland.toml;
+        ".config/wal/templates/colors-nix.yaml".source = ../dotfiles/pywal/colors-nix.yaml;
+        ".config/wal/templates/colors-hyprland.conf".source = ../dotfiles/pywal/colors-hyprland.conf;
+        ".config/wallust".source = ../dotfiles/wallust;
+# ".config/wallust/wallust.toml".source = ../dotfiles/wallust/wallust.toml;
+# ".config/wallust/templates".source = ../dotfiles/wallust/templates;
+        ".config/swappy/config".source = ../dotfiles/swappy;
+        ".config/hypr/pyprland.toml".source = ../dotfiles/pyprland.toml;
     };
 
     home.sessionVariables = {
@@ -49,8 +48,8 @@ in
     };
 
     xresources.extraConfig = ''
-#include "/home/maksi/.cache/wallust/colors.Xresources"
-        '';    
+        #include "/home/maksi/.cache/wallust/colors.Xresources"
+    '';    
 
     gtk = {
         enable = true;

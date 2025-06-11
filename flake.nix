@@ -30,11 +30,8 @@
         mkHome = config:
             home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
-              specialArgs = { inherit inputs; };
-              modules = [ 
-                  config
-                  ./hosts/defaultHome.nix
-              ];
+              extraSpecialArgs = { inherit inputs; };
+              modules = [ config ./hosts/defaultHome.nix];
             };
     in {
         nixosConfigurations = {

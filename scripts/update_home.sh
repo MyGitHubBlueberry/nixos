@@ -4,7 +4,7 @@ source "$(dirname "$0")/notification_functions.sh"
 
 main() {
     # Run the command in the background and capture the output
-    local home_manager_msg=$(home-manager switch --flake $HOME/nixos 2>&1 > /tmp/home_manager_output) &
+    local home_manager_msg=$(home-manager switch --flake "$HOME/nixos#$(whoami)@$(hostname)" 2>&1 > /tmp/home_manager_output) &
     pid=$!
 
     local icon="$HOME/Pictures/Icons/home-manager.svg"
@@ -18,7 +18,7 @@ main() {
 
     home_manager_msg=$(cat /tmp/home_manager_output)
 
-    if [[  -n "$(echo "$home_manager_msg" | grep "Creating profile")" ]]; then
+    if [[  -n "$(echo "$home_manager_msg" | grep "Creating home")" ]]; then
         notify-send -i "$icon" $app "Updated successfully" -r "$id" 
     elif [[ -n "$(echo "$home_manager_msg" | grep "No change")" ]]; then
         notify-send -i "$icon" $app "No changes detected" -r "$id" 

@@ -1,11 +1,5 @@
 { config, pkgs, ... }:
 {
-    imports = [
-        ../defaultHome.nix
-    ];
-
-    hyprconfig.enable = true;
-
     home = {
         username = "maksi";
         homeDirectory = "/home/maksi";
