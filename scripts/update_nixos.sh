@@ -5,7 +5,7 @@ icon="$HOME/Pictures/Icons/nix.svg"
 app="NixOS"
 preupdate_time=10
 update_time=10
-raw_message=$(sudo -A nixos-rebuild switch --flake "$HOME"/nixos > /tmp/nixos_output 2>&1) &
+raw_message=$(sudo -A nixos-rebuild switch --flake "$HOME/nixos#$(hostname)"  > /tmp/nixos_output 2>&1) &
 pid=$!
 
 id=$(notify_with_progress_untill_time_is_up $preupdate_time $app "Evaluating your derivation..." "$icon" "" $pid)
