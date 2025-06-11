@@ -45,7 +45,6 @@
               "uk_UA.UTF-8"; LC_NUMERIC = "uk_UA.UTF-8"; LC_PAPER = "uk_UA.UTF-8"; LC_TELEPHONE = 
               "uk_UA.UTF-8"; LC_TIME = "uk_UA.UTF-8";
       };
-
       services = {
           xserver = {
               autorun = true;
@@ -57,6 +56,10 @@
               excludePackages = with pkgs; [ xterm ];
           };
           libinput.enable = true;
+          libinput.touchpad = {
+              naturalScrolling = true;
+              scrollMethod = "twofinger";
+          };
           printing.enable = true;
           pipewire = {
               enable = true;
@@ -90,9 +93,6 @@
       programs.zsh.enable = true;
       environment.shells = with pkgs; [ zsh ];
       users.defaultUserShell = pkgs.zsh;
-
-      # nixpkgs.config.allowUnfree = true;
-
 
       environment.systemPackages = with pkgs; [
           kitty
