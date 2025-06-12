@@ -35,11 +35,11 @@
     services.displayManager.sddm = lib.mkIf config.displayManager.sddm.enable {
       enable = true;
       wayland.enable = false;
-      theme = "${import ../../packages/sddm-sugar-dark/default.nix { inherit pkgs; }}";
-      extraPackages = with pkgs; [
-          libsForQt5.qt5.qtquickcontrols2   
-          libsForQt5.qt5.qtgraphicaleffects
-      ];
+      # theme = "${import ../../packages/sddm-sugar-dark/default.nix { inherit pkgs; }}";
+      # extraPackages = with pkgs; [
+      #     libsForQt5.qt5.qtquickcontrols2   
+      #     libsForQt5.qt5.qtgraphicaleffects
+      # ];
     };
   };
 }

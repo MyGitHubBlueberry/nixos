@@ -122,8 +122,8 @@
                         "$mod, Tab, focuscurrentorlast"
                         "$mod, m, togglesplit"
 
-                        "$mod, Escape, exec, ~/nixos/scripts/rofi/powermenu.sh" 
-                        "$mod, Space, exec, ~/nixos/scripts/rofi/launcher.sh" 
+                        "$mod, Escape, exec, ~/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
+                        "$mod, Space, exec, ~/nixos/dotfiles/rofi/launcher/launcher.sh" 
                         "$mod, T, exec, kitty"
                         "$mod, Q, killactive"
                         "$mod SHIFT, Q, exit"
@@ -137,21 +137,13 @@
                         "$mod, bracketleft, workspace, e-1"
                         "$mod, bracketright, workspace, e+1"
                         "$mod, w, exec, bash ~/nixos/scripts/update_wallpaper.sh"
-                        "$mod, b, exec, bash ~/nixos/scripts/restart_waybar.sh"
-                        "$mod, c, exec, bash ~/nixos/scripts/rofi/screenshot.sh"
+                        "$mod, c, exec, bash ~/nixos/dotfiles/rofi/applets/screenshot.sh"
                         "$mod, equal, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+"
                         "$mod, minus, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-"
                         "$mod, v, exec, pypr toggle volume"
                         # "$mod, u, exec, pypr show update"
 
                         "$mod, u, exec, exec eww update open_update_menu=true"
-                        # "$mod, u, submap, update"
-                        # ", h, exec, /home/maksi/nixos/scripts/update_home.sh; eww update open_update_menu=false"
-                        # ", f, exec, /home/maksi/nixos/scripts/update_flake.sh; eww update open_update_menu=false"
-                        # ", f, submap, reset"
-                        # ", s, exec, /home/maksi/nixos/scripts/update_nixos.sh; eww update open_update_menu=false"
-                        # ", s, submap, reset"
-                        # ", escape, submap, reset"
                         ]
                         ++ (
 # workspaces
