@@ -1,17 +1,5 @@
-#!/nix/store/h3bhzvz9ipglcybbcvkxvm4vg9lwvqg4-bash-5.2p26/bin/bash
-
-## Available Styles
-#
-## style-1   style-2   style-3   style-4   style-5
-## style-6   style-7   style-8   style-9   style-10
-
-# Current Theme
-dir="$HOME/nixos/dotfiles/rofi/powermenu"
-theme='style-9'
-
-# CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
-host=`hostname`
+host=$(hostname)
 
 # Options
 shutdown=''
@@ -27,7 +15,7 @@ rofi_cmd() {
 	rofi -dmenu \
 		-p "Uptime: $uptime" \
 		-mesg "Uptime: $uptime" \
-		-theme ${dir}/${theme}.rasi
+        -theme $(dirname "$0")/style.rasi
 }
 
 # Confirmation CMD
@@ -40,7 +28,7 @@ confirm_cmd() {
 		-dmenu \
 		-p 'Confirmation' \
 		-mesg 'Are you Sure?' \
-		-theme ${dir}/${theme}.rasi
+        -theme $(dirname "$0")/style.rasi
 }
 
 # Ask for confirmation
