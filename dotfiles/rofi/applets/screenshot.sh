@@ -8,11 +8,11 @@ list_col='1'
 list_row='5'
 win_width='120px'
 
-option_1=""
-option_2=""
-option_3=""
-option_4=""
-option_5=""
+option_1="󱡶"
+option_2=""
+option_3=""
+option_4=""
+option_5=""
 
 # Rofi CMD
 rofi_cmd() {
