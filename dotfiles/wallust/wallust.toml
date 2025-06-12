@@ -84,7 +84,7 @@ hyrpland = { src = 'colors-hyprland.conf', dst = '~/nixos/modules/home-manager/c
 # waybar = { src = 'colors-waybar.css', dst = '~/.config/waybar/colors-waybar.css', pywal = true }
 colors = { src = 'colors.sh', dst = '~/.cache/wallust/colors.sh', pywal = true }
 kitty = { src = 'colors-kitty.conf', dst = '~/.config/kitty/kitty.conf', pywal = true }
-rofi = { src = 'colors-rofi.rasi', dst = '~/nixos/dotfiles/rofi/colors.rasi', pywal = true }
+rofi = { src = 'colors-rofi.rasi', dst = '~/nixos/dotfiles/rofi/colors.rasi', pywal = false }
 mako = { src = 'mako', dst = '~/.config/mako/config', pywal = true}
 dunst = { src = 'dunst', dst = '~/.config/dunst/dunstrc', pywal = true }
 # polybar = { src = 'polybar', dst = '~/.config/polybar/config.ini', pywal = true, new_engine = true }
