@@ -4,9 +4,7 @@ let
   cfg = config.windowManager;
 in
 {
-  options.windowManager.hyprland.enable = lib.mkEnableOption "enable hyprland";
-
-  config = lib.mkIf con.enable {
+  config = lib.mkIf cfg.enable {
     systemd.sleep.extraConfig = '' 
         HibernateDelaySec=10min
         '';
