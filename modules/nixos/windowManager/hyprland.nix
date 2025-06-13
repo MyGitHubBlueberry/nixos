@@ -38,25 +38,27 @@ in
     })
 
     {
-      programs.hyprland.enable = true;
-      programs.hyprlock.enable = true;
+      programs = {
+          hyprland.enable = true;
+          hyprlock.enable = true;
+      };
 
       environment = {
-        sessionVariables = {
-          HYPRCURSOR_SIZE = "16";
-        };
+          sessionVariables = {
+              HYPRCURSOR_SIZE = "16";
+          };
 
-        systemPackages = with pkgs; [
-            pyprland
-            swww #wallpaper
-            socat #for eww
-            mako #notifications
-            libnotify #mako dependency
-            #screenshots
-            grim
-            slurp
-            jq
-        ];
+          systemPackages = with pkgs; [
+              pyprland
+              swww #wallpaper
+              socat #for eww
+              mako #notifications
+              libnotify #mako dependency
+#screenshots
+              grim
+              slurp
+              jq
+          ];
       };
     }
     ]);

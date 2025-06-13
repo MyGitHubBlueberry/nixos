@@ -55,11 +55,7 @@ run_cmd() {
 		elif [[ $1 == '--logout' ]]; then
             loginctl lock-session
 		elif [[ $1 == '--lock' ]]; then
-            if [[ "$session" == "x11" ]]; then
-                i3lock 5 3
-            else
-                hyprlock
-            fi
+            loginctl lock-session
         fi
 	else
 		exit 0
