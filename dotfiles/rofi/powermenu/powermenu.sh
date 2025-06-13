@@ -1,5 +1,6 @@
 uptime="`uptime -p | sed -e 's/up //g'`"
 host=$(hostname)
+session=$(loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}')
 
 # Options
 shutdown=''
@@ -7,8 +8,8 @@ reboot='󰜉'
 lock=''
 suspend='󰖔'
 logout='󰍃'
-yes=''
-no=''
+yes=''
+no=''
 
 # Rofi CMD
 rofi_cmd() {
@@ -53,6 +54,12 @@ run_cmd() {
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
             loginctl lock-session
+		elif [[ $1 == '--lock' ]]; then
+            if [[ "$session" == "x11" ]]; then
+                i3lock 5 3
+            else
+                hyprlock
+            fi
         fi
 	else
 		exit 0
@@ -69,7 +76,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		i3lock 5 3
+		run_cmd --lock
         ;;
     $suspend)
 		run_cmd --suspend
