@@ -27,6 +27,7 @@ in
             xclip
             wmctrl #used inscript for notifications
         ];
+#todo: check about screen saver and dpms differences
         environment.extraInit = ''
             xset s 20
             '';
