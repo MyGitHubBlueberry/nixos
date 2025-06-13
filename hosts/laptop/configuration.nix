@@ -1,23 +1,28 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+    imports = [ ./hardware-configuration.nix ];
 
-  networking.hostName = "laptop";
-  services.tlp.enable = true;
-  nvidia.enable = false;
-  programming.enable = true;
-  gaming.enable = false;
-  virtualization.enable = false;
-  windowManager = {
-  	enable = true;
-	hyprland.enable = true;
-  };
-  displayManager.sddm.enable = true;
-  environment.systemPackages = with pkgs; [ ];
+    networking.hostName = "laptop";
+    services.tlp.enable = true;
+    nvidia.enable = false;
+    programming.enable = true;
+    gaming.enable = false;
+    virtualization.enable = false;
+    windowManager = {
+        enable = true;
+        hyprland.enable = true;
+    };
+    displayManager.sddm.enable = true;
+    environment.systemPackages = with pkgs; [ ];
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+    hardware.bluetooth.enable = true;
+    hardware.bluetooth.powerOnBoot = true;
 
-  system.stateVersion = "24.05";
+    services.logind = {
+        powerKey = "suspend-then-hibernate";
+        lidSwitch = "suspend-then-hibernate";
+    };
+
+    system.stateVersion = "24.05";
 }
