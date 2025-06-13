@@ -9,6 +9,8 @@
             unzip
             wget
 
+            yazi
+
             man-pages
             ripgrep
             pkg-config

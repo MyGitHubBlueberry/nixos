@@ -39,11 +39,11 @@ change_mode() {
 }
 
 restart() {
+    if [[ "$1" != "keep" ]]; then
+        rm -f "$temp"
+        cp "$wallpaper" "$temp"
+    fi
     if [[ "$session" = "x11" ]]; then
-        if [[ "$1" != "keep" ]]; then
-            rm -f "$temp"
-            cp "$wallpaper" "$temp"
-        fi
         feh --bg-fill "$wallpaper"
         pkill dunst
         xrdb ~/.Xresources

@@ -12,11 +12,7 @@
             })
             btop
 
-            gnome-control-center
             vlc
-            pamixer
-
-            yazi
 
             thunderbird #email
 

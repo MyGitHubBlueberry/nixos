@@ -19,6 +19,8 @@
         swappy #for viewing pictures
         ssh-askpass-fullscreen #verification for system update
         jq #for scripts and eww
+        pamixer #for and eww
+        gnome-control-center #for and eww
         gnome-clocks
         gnome-calculator
         gnome-calendar
