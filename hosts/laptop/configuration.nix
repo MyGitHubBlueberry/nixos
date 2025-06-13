@@ -16,6 +16,8 @@
   displayManager.sddm.enable = true;
   environment.systemPackages = with pkgs; [ ];
 
-  system.stateVersion = "24.05";
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
+  system.stateVersion = "24.05";
 }

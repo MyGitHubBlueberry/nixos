@@ -12,7 +12,7 @@ option_1="󱡶"
 option_2=""
 option_3=""
 option_4=""
-option_5=""
+option_5=""
 
 # Rofi CMD
 rofi_cmd() {
