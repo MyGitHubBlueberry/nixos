@@ -11,8 +11,10 @@
         boot.kernelModules = [ "nvidia" "nvidia_uvm" "nvidia_modeset" "nvidia_drm" ];
         boot.kernelParams = [ "nvidia-drm.modeset=1" ];
         boot.extraModprobeConfig = ''
-            options nvidia_modeset vblank_sem_control=0 nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/var/tmp
+            options nvidia_modeset vblank_sem_control=0 nvidia 
             '';
+        # NVreg_TemporaryFilePath=/var/tmp
+        # NVreg_PreserveVideoMemoryAllocations=1 caused issues
         services.xserver.videoDrivers = [ "nvidia" ]; 
 
         hardware.graphics = {

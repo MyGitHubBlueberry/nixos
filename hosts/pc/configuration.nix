@@ -18,10 +18,6 @@
     displayManager.gdm.enable = true;
 
     boot.resumeDevice = "/dev/disk/by-uuid/de1eff34-10fc-4229-b149-782ff0b66291";
-    services.logind.extraConfig = ''
-        IdleAction=suspend
-        IdleActionSec=10min
-    '';
 
     environment.systemPackages = with pkgs; [];
 

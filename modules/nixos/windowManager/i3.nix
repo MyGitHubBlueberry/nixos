@@ -15,8 +15,8 @@ in
 
         environment.systemPackages = with pkgs; [
             xss-lock
-            i3lock-fancy-rapid
             xkb-switch-i3
+            i3lock-fancy-rapid
 
             feh #wallpper
             picom #blur and other window stuff
@@ -27,10 +27,16 @@ in
             xclip
             wmctrl #used inscript for notifications
         ];
-
+        environment.extraInit = ''
+            xset s 20
+            '';
+        programs.i3lock = {
+            enable = true;
+            package = pkgs.i3lock-fancy-rapid;
+        };
         programs.xss-lock = {
             enable = true;
-            lockerCommand = "i3lock 5 3 --transfer-sleep-lock";
+            lockerCommand = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 3 5";
         };
     };
 }
