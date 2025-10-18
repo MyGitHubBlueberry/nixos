@@ -27,6 +27,8 @@
 
             wineWowPackages.full
             winetricks
+
+            r2modman #mods for risk of rain
         ];
 
         environment.sessionVariables = {

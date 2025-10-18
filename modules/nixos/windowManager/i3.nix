@@ -29,7 +29,9 @@ in
         ];
 #todo: check about screen saver and dpms differences
         environment.extraInit = ''
-            xset s 20
+            xset on
+            xset s 120
+            xset dpms 180 180 180
             '';
         programs.i3lock = {
             enable = true;

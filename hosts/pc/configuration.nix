@@ -15,6 +15,13 @@
         i3.enable = true;
         hyprland.enable = false;
     };
+    services.postgresql = {
+        enable = true; # i just test this db
+            authentication = pkgs.lib.mkOverride 10 ''
+            #type database  DBuser  auth-method
+            local all       all     trust
+            '';
+    };
     displayManager.gdm.enable = true;
 
     boot.resumeDevice = "/dev/disk/by-uuid/de1eff34-10fc-4229-b149-782ff0b66291";

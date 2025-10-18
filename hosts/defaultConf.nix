@@ -99,6 +99,7 @@
           telegram-desktop
           brave
           librewolf 
+          vivaldi
 
           xclip
           wl-clipboard
