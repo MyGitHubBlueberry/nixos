@@ -25,10 +25,10 @@
             gnome-clocks
             gnome-calculator
             gnome-calendar
+            brightnessctl
         ];
-#for thunar
+        #for thunar
         services.gvfs.enable = true; # Mount, trash, and other functionalities
         services.tumbler.enable = true; # Thumbnail support for images
     };
-
 }

@@ -5,7 +5,12 @@
         username = "maksi";
         homeDirectory = "/home/maksi";
         stateVersion = "25.05"; 
-        packages = [
+        packages = with pkgs; [
+            teams-for-linux
+            (discord.override {
+             withVencord = true;
+             })
+            onlyoffice-bin
         ];
     };
     services.mpris-proxy.enable = true;

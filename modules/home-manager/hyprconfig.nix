@@ -168,7 +168,8 @@
                       "$mod, minus, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-"
                       "$mod, v, exec, pypr toggle volume"
 # "$mod, u, exec, pypr show update"
-
+                      ",XF86MonBrightnessUp, exec, brightnessctl s +5%"
+                      ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
                       "$mod, u, exec, exec eww update open_update_menu=true"
                       ]
                       ++ (

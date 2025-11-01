@@ -3,6 +3,15 @@
 {
     imports = [ ./hardware-configuration.nix ];
 
+#temporary
+    services.postgresql = {
+        enable = true;
+        authentication = pkgs.lib.mkOverride 10 ''
+#type database  DBuser  auth-method
+            local all       all     trust
+            '';
+    };
+
     networking.hostName = "laptop";
     services.tlp.enable = true;
     nvidia.enable = false;
