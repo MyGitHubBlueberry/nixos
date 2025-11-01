@@ -9,7 +9,7 @@
             unzip
             wget
 
-            yazi
+            #yazi in homemanager
 
             man-pages
             ripgrep

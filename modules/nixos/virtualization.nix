@@ -8,6 +8,7 @@
     };
 
     config = lib.mkIf config.virtualization.enable {
+        boot.kernelParams = [ "kvm.enable_virt_at_load=0" ]; #temp workaround
           virtualisation.virtualbox = {
               host = {
                   enable = true; 

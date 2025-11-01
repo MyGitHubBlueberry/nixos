@@ -19,11 +19,11 @@ in
 {
     imports = [
         ../modules/home-manager/hyprconfig.nix
-        ../modules/home-manager/notifications/mako.nix
+            ../modules/home-manager/notifications/mako.nix
     ];
 
     hyprconfig.enable = true;
-    
+
     home.file = {
         ".config/wal/templates/colors-nix.yaml".source = ../dotfiles/pywal/colors-nix.yaml;
         ".config/wal/templates/colors-hyprland.conf".source = ../dotfiles/pywal/colors-hyprland.conf;
@@ -48,8 +48,8 @@ in
     };
 
     xresources.extraConfig = ''
-        #include "/home/maksi/.cache/wallust/colors.Xresources"
-    '';    
+#include "/home/maksi/.cache/wallust/colors.Xresources"
+        '';    
 
     gtk = {
         enable = true;
@@ -70,6 +70,12 @@ in
     };
 
     programs = {
+        yazi = {
+            enable = true;
+            shellWrapperName = "y";
+            enableZshIntegration = true;
+            enableBashIntegration = true;
+        };
         bash = {
             enable = true;
             shellAliases = myAliases;
