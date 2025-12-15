@@ -38,7 +38,7 @@
 
       networking.networkmanager.enable = true;
 
-      time.timeZone = "Europe/Kyiv";
+      time.timeZone = "Europe/Tirane"; #"Europe/Kyiv";
       i18n.defaultLocale = "en_US.UTF-8";
       i18n.extraLocaleSettings = { LC_ADDRESS = "uk_UA.UTF-8"; LC_IDENTIFICATION = 
           "uk_UA.UTF-8"; LC_MEASUREMENT = "uk_UA.UTF-8"; LC_MONETARY = "uk_UA.UTF-8"; LC_NAME = 
@@ -75,7 +75,7 @@
       users.users.maksi = { 
           isNormalUser = true; 
           description = "maksi"; 
-          extraGroups = [ "networkmanager" "wheel" ];
+          extraGroups = [ "networkmanager" "wheel" "input" ];
           packages = with pkgs; [
           ];
       };

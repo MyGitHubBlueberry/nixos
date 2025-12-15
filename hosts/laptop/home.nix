@@ -11,6 +11,7 @@
              withVencord = true;
              })
             onlyoffice-bin
+            slack
         ];
     };
     services.mpris-proxy.enable = true;

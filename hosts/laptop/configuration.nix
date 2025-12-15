@@ -16,13 +16,14 @@
     services.tlp.enable = true;
     nvidia.enable = false;
     programming.enable = true;
-    gaming.enable = false;
+    gaming.enable = true;
     virtualization.enable = false;
     windowManager = {
         enable = true;
-        hyprland.enable = true;
+        i3.enable = true;
     };
-    displayManager.sddm.enable = true;
+    displayManager.gdm.enable = true;
+
     environment.systemPackages = with pkgs; [ ];
 
     hardware.bluetooth.enable = true;

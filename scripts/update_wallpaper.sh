@@ -58,7 +58,7 @@ restart() {
 
 # Check if the lock file exists
 if [ -e "$LOCK_FILE" ]; then
-    echo "Script is already running."
+    notify-send "Wallpaper and theme" "There is a lock file. The script is propably running."
     exit 1
 fi
 

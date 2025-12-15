@@ -4,7 +4,17 @@
     options.programming.enable = lib.mkEnableOption "add packages for programming";
 
     config = lib.mkIf config.programming.enable {
+        # services.mysql = {
+        #     enable = true;
+        #     package = pkgs.mysql84;
+        # };
+        services.mysql = {
+            enable = true;
+            package = pkgs.mariadb;
+        };
         environment.systemPackages = with pkgs; [
+            nixd
+
             git
             unzip
             wget
@@ -38,6 +48,15 @@
             rustfmt
             rustc
             rustlings
+
+            dotnet-sdk_9
+            csharp-ls
+
+            sqls
         ];
+
+        environment.sessionVariables = {
+            DOTNET_ROOT = "${pkgs.dotnet-sdk_9}/share/dotnet";
+        };
     };
 }
