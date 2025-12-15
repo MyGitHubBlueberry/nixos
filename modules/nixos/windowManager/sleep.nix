@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 
 let
 cfg = config.windowManager;
@@ -6,7 +6,7 @@ in
 {
     config = lib.mkIf cfg.enable {
         systemd.sleep.extraConfig = '' 
-            HibernateDelaySec=10min
+            HibernateDelaySec=15min
             '';
         services.logind.extraConfig = builtins.concatStringsSep "\n"(
             (if config.nvidia.enable then [
@@ -14,7 +14,13 @@ in
             ] else [
             "IdleAction=suspend-then-hibernate"
             ]) ++ [
-            "IdleActionSec=5min"
+            "IdleActionSec=10min"
             ]);
+
+        services.logind = {
+            powerKey = "suspend-then-hibernate";
+            lidSwitch = "suspend-then-hibernate";
+        };
+
     };
 }

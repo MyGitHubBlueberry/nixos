@@ -29,10 +29,5 @@
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
 
-    services.logind = {
-        powerKey = "suspend-then-hibernate";
-        lidSwitch = "suspend-then-hibernate";
-    };
-
     system.stateVersion = "24.05";
 }

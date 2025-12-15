@@ -27,4 +27,5 @@
             zoom-us
             ];
     };
+    hyprconfig.enable = true;
 }

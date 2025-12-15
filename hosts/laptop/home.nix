@@ -15,4 +15,7 @@
         ];
     };
     services.mpris-proxy.enable = true;
+
+    hyprconfig.enable = true;
+    autorandr.laptopDocStation.enable = true;
 }

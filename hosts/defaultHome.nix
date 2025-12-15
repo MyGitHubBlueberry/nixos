@@ -19,10 +19,9 @@ in
 {
     imports = [
         ../modules/home-manager/hyprconfig.nix
-            ../modules/home-manager/notifications/mako.nix
+        ../modules/home-manager/notifications/mako.nix
+        ../modules/home-manager/autorandr.nix
     ];
-
-    hyprconfig.enable = true;
 
     home.file = {
         ".config/wal/templates/colors-nix.yaml".source = ../dotfiles/pywal/colors-nix.yaml;
