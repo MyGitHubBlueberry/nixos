@@ -8,6 +8,9 @@
     };
 
     config = lib.mkIf config.gaming.enable {
+        # config.permittedInsecurePackages = [
+        #     "electron-36.9.5"
+        # ];
         programs = {
             steam = {
                 enable = true;

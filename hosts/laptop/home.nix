@@ -12,10 +12,12 @@
              })
             onlyoffice-bin
             slack
+            jetbrains.rider
+            vlc
         ];
     };
     services.mpris-proxy.enable = true;
 
     hyprconfig.enable = true;
-    autorandr.laptopDocStation.enable = true;
+    # autorandr.laptopDocStation.enable = true;
 }

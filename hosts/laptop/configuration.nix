@@ -14,6 +14,8 @@
 
     networking.hostName = "laptop";
     services.tlp.enable = true;
+    autorandr.laptopDocStation.enable = true;
+    laptopLid.enable = false;
     nvidia.enable = false;
     programming.enable = true;
     gaming.enable = true;

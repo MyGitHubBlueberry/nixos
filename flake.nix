@@ -17,7 +17,11 @@
         pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
+            config.permittedInsecurePackages = [
+                "electron-36.9.5"
+            ];
         };
+
         mkSystem = config:
             nixpkgs.lib.nixosSystem {
               inherit pkgs;

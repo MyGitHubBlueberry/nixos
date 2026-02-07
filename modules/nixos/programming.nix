@@ -4,15 +4,11 @@
     options.programming.enable = lib.mkEnableOption "add packages for programming";
 
     config = lib.mkIf config.programming.enable {
-        # services.mysql = {
-        #     enable = true;
-        #     package = pkgs.mysql84;
-        # };
-        services.mysql = {
-            enable = true;
-            package = pkgs.mariadb;
-        };
         environment.systemPackages = with pkgs; [
+            gemini-cli  #i know...
+            btop
+            tree
+
             nixd
 
             git
@@ -53,6 +49,8 @@
             csharp-ls
 
             sqls
+
+            lemminx #xml
         ];
 
         environment.sessionVariables = {

@@ -10,7 +10,6 @@
             (discord.override {
                  withVencord = true;
             })
-            btop
 
             vlc
 

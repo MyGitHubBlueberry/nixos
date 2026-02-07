@@ -20,8 +20,8 @@ in
     imports = [
         ../modules/home-manager/hyprconfig.nix
         ../modules/home-manager/notifications/mako.nix
-        ../modules/home-manager/autorandr.nix
     ];
+    # ../modules/home-manager/autorandr.nix
 
     home.file = {
         ".config/wal/templates/colors-nix.yaml".source = ../dotfiles/pywal/colors-nix.yaml;

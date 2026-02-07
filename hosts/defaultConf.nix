@@ -9,6 +9,8 @@
           ../modules/nixos/virtualization.nix
           ../modules/nixos/displayManager.nix
           ../modules/nixos/programming.nix
+          ../modules/nixos/autorandr.nix
+          ../modules/nixos/laptopLid.nix
           inputs.minegrub-world-sel-theme.nixosModules.default
         ];
 
@@ -106,6 +108,7 @@
       ];
 
       fonts.packages = with pkgs; [
+          comic-relief
           texlivePackages.cascadia-code
           nerd-fonts.caskaydia-cove
           nerd-fonts.caskaydia-mono
