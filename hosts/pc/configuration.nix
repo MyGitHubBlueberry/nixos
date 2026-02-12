@@ -12,8 +12,8 @@
     virtualization.enable = true;
     windowManager = {
         enable = true;
-        i3.enable = true;
-        hyprland.enable = false;
+        i3.enable = false;
+        hyprland.enable = true;
     };
     services.postgresql = {
         enable = true; # i just test this db

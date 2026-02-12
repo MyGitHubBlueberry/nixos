@@ -42,8 +42,8 @@
               source = "/home/maksi/nixos/modules/home-manager/colors-hyprland.conf";
 
               monitor = [
-                  ",prefered,auto,1"
-                      "Unknown-1, disable"
+                  ",1920x1080@120,auto,1"
+                  "Unknown-1, disable"
               ];
 
               input = {
@@ -113,15 +113,6 @@
                       preserve_split = "yes"; # you probably want this
               };
 
-# See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-              gestures = {
-# See https://wiki.hyprland.org/Configuring/Variables/ for more
-                  workspace_swipe = true;
-                  workspace_swipe_forever = true;
-                  workspace_swipe_distance = 200;
-                  workspace_swipe_cancel_ratio = 0.3;
-              };
-
               misc = {
 # See https://wiki.hyprland.org/Configuring/Variables/ for more
                   force_default_wallpaper = 0; #-1; # Set to 0 to disable the anime mascot wallpapers
@@ -133,20 +124,29 @@
 
               "$mod" = "Alt";
 
+              # "$mod, h, movefocus, l"
+              #     "$mod, l, movefocus, r"
+              #     "$mod, k, movefocus, u"
+              #     "$mod, j, movefocus, d"
+                      # "$mod SHIFT, h, swapwindow, ~/nixosscriptshypr_groups.sh l"
+                      # "$mod SHIFT, l, swapwindow, ~/nixosscriptshypr_groups.sh r"
+                      # "$mod SHIFT, k, swapwindow, ~/nixosscriptshypr_groups.sh u"
+                      # "$mod SHIFT, j, swapwindow, ~/nixosscriptshypr_groups.sh d"
               bind =
                   [
-                  "$mod, h, movefocus, l"
-                      "$mod, l, movefocus, r"
-                      "$mod, k, movefocus, u"
-                      "$mod, j, movefocus, d"
+                  "$mod, h, exec, ~/nixos/scripts/hypr_groups.sh focus l"
+                  "$mod, l, exec, ~/nixos/scripts/hypr_groups.sh focus r"
+                  "$mod, k, exec, ~/nixos/scripts/hypr_groups.sh focus u"
+                  "$mod, j, exec, ~/nixos/scripts/hypr_groups.sh focus d"
 
-                      "$mod SHIFT, h, swapwindow, l"
-                      "$mod SHIFT, l, swapwindow, r"
-                      "$mod SHIFT, k, swapwindow, u"
-                      "$mod SHIFT, j, swapwindow, d"
+                      "$mod SHIFT, h, exec, ~/nixos/scripts/hypr_groups.sh move l"
+                      "$mod SHIFT, l, exec, ~/nixos/scripts/hypr_groups.sh move r"
+                      "$mod SHIFT, k, exec, ~/nixos/scripts/hypr_groups.sh move u"
+                      "$mod SHIFT, j, exec, ~/nixos/scripts/hypr_groups.sh move d"
 
-                      "$mod, Tab, focuscurrentorlast"
-                      "$mod, m, togglesplit"
+                      "$mod, Tab, workspace, previous"
+                      "$mod, s, togglesplit"
+                      "$mod, m, togglegroup"
 
                       "$mod, Escape, exec, ~/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
                       "$mod, Space, exec, ~/nixos/dotfiles/rofi/launcher/launcher.sh" 
@@ -158,8 +158,8 @@
                       "$mod, R, exec, wofi --show drun"
 # "$mod, P, pseudo"
                       "$mod, Return, fullscreen"
-                      "$mod, S, togglespecialworkspace, magic"
-                      "$mod SHIFT, S, movetoworkspace, special:magic"
+                      "$mod, backslash, togglespecialworkspace, magic"
+                      "$mod SHIFT, backslash, movetoworkspace, special:magic"
                       "$mod, bracketleft, workspace, e-1"
                       "$mod, bracketright, workspace, e+1"
                       "$mod, w, exec, bash ~/nixos/scripts/update_wallpaper.sh"

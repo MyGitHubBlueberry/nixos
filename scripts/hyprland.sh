@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # initialize wallpaper daemon
-swww init &
+swww-daemon &
+swww restore &
 # setting wallpaper
 bash ./update_wallpaper.sh &
 

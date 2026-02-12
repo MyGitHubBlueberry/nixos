@@ -21,7 +21,7 @@
         };
 
         environment.systemPackages = with pkgs; [
-            protonup
+            protonup-ng
             lutris
             heroic
 

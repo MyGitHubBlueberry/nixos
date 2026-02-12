@@ -10,6 +10,7 @@ let
     '';
 
     notifyWhenFinished = ''
+        export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
         precmd() {
             echo -ne "\a"
         }

@@ -11,7 +11,7 @@
         environment.systemPackages = with pkgs; [
             eww
             xorg.xmodmap #for switching right alt
-            rofi-wayland #app access
+            rofi #app access
             xfce.thunar #file manager
             xfce.xfce4-settings
             pavucontrol #audio settings

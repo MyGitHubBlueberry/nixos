@@ -18,12 +18,15 @@
             spotube
             spotify
 
-            onlyoffice-bin
+            onlyoffice-desktopeditors
             todo
 
             obs-studio
             teams-for-linux
             zoom-us
+
+            jetbrains.rider
+            avalonia
             ];
     };
     hyprconfig.enable = true;

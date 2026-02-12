@@ -5,7 +5,6 @@
 
     config = lib.mkIf config.programming.enable {
         environment.systemPackages = with pkgs; [
-            gemini-cli  #i know...
             btop
             tree
 
