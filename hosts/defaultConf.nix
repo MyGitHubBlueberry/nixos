@@ -20,6 +20,7 @@
               device = "nodev";
               efiSupport = true;
               useOSProber = true;
+              configurationLimit = 10;
               minegrub-world-sel = {
                   enable = true;
                   customIcons = [{

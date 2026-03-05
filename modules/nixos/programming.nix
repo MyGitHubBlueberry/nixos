@@ -47,6 +47,9 @@
             dotnet-sdk_9
             csharp-ls
 
+            vscode-langservers-extracted
+            emmet-ls
+
             sqls
 
             lemminx #xml

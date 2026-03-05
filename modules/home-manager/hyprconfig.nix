@@ -9,6 +9,7 @@
 
     config = lib.mkIf config.hyprconfig.enable {
         services.hypridle = {
+            enable = false;
             settings = {
                 general = {
                     after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -32,7 +33,6 @@
                     }
                 ];
             };
-          enable = true;
       };
       wayland.windowManager.hyprland = {
           enable = true;
@@ -146,7 +146,8 @@
 
                       "$mod, Tab, workspace, previous"
                       "$mod, s, togglesplit"
-                      "$mod, m, togglegroup"
+                      "$mod, g, togglegroup"
+                      "$mod, n, lockactivegroup, toggle"
 
                       "$mod, Escape, exec, ~/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
                       "$mod, Space, exec, ~/nixos/dotfiles/rofi/launcher/launcher.sh" 
@@ -158,6 +159,7 @@
                       "$mod, R, exec, wofi --show drun"
 # "$mod, P, pseudo"
                       "$mod, Return, fullscreen"
+                      "$mod SHIFT, Return, fullscreenstate, 0 2"
                       "$mod, backslash, togglespecialworkspace, magic"
                       "$mod SHIFT, backslash, movetoworkspace, special:magic"
                       "$mod, bracketleft, workspace, e-1"
@@ -197,12 +199,13 @@
               ];
 
               exec-once = [
-                  "bash ~/nixos/scripts/hyprland.sh"
+                      "bash ~/nixos/scripts/hyprland.sh"
                       "pypr"
                       "[workspace 1 silent] brave --use-gl=desktop"
-                      "[workspace 2 silent] telegram-desktop"
+                      "[workspace 2 silent] Telegram"
                       "[workspace 2 silent] discord"
                       "[workspace 7 silent] thunderbird"
+                      "hyprctl dispatch focuswindow class:^org\.telegram\.desktop$ && hyprctl dispatch togglegroup && hyprctl dispatch focuswindow discord && hyprctl dispatch changegroupactive f && hyprctl dispatch lockactivegroup lock"
               ];
 
               "$scratchpad" = "class:^(scratchpad)$";
@@ -215,6 +218,28 @@
                   "workspace special silent,$scratchpad"
               ];
           };
+
+
+              # bind = $mod, g, submap, group
+              #
+              # submap = group
+              #
+              # bind = , g, togglegroup
+              # bind = , j, changegroupactive, b
+              # bind = , k, changegroupactive, f
+              # bind = SHIFT, j, movegroupwindow, b
+              # bind = SHIFT, k, movegroupwindow, f
+              #
+              # bind = $mod, h, movewindoworgroup, l
+              # bind = $mod, k, movewindoworgroup, u
+              # bind = $mod, j, movewindoworgroup, d
+              # bind = $mod, l, movewindoworgroup, r
+              #
+              # bind = , Return, submap, reset
+              # bind = , Escape, submap, reset
+              # bind = $mod, g, submap, reset
+              #
+              # submap = reset
           extraConfig = ''
               bind = $mod, U, submap, update
               bind = $mod, U, exec, eww update open_update_menu=true
@@ -233,27 +258,6 @@
               bind = , Escape, submap, reset
               bind = $mod, U, exec, eww update open_update_menu=false
               bind = $mod, U, submap, reset
-
-              submap = reset
-
-              bind = $mod, g, submap, group
-
-              submap = group
-
-              bind = , g, togglegroup
-              bind = , j, changegroupactive, b
-              bind = , k, changegroupactive, f
-              bind = SHIFT, j, movegroupwindow, b
-              bind = SHIFT, k, movegroupwindow, f
-
-              bind = $mod, h, movewindoworgroup, l
-              bind = $mod, k, movewindoworgroup, u
-              bind = $mod, j, movewindoworgroup, d
-              bind = $mod, l, movewindoworgroup, r
-
-              bind = , Return, submap, reset
-              bind = , Escape, submap, reset
-              bind = $mod, g, submap, reset
 
               submap = reset
               '';
