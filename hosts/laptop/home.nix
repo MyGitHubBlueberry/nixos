@@ -10,7 +10,7 @@
             (discord.override {
              withVencord = true;
              })
-            onlyoffice-bin
+            onlyoffice-desktopeditors
             slack
             jetbrains.rider
             vlc
