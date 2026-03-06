@@ -86,6 +86,7 @@
       programs.dconf.enable = true;
 
       programs.coolercontrol.enable = true;
+      programs.kdeconnect.enable = true;
 
       programs.neovim.enable = true;
       programs.neovim.defaultEditor = true;
