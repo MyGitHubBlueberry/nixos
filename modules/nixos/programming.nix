@@ -50,6 +50,9 @@
             vscode-langservers-extracted
             emmet-ls
 
+            typescript-language-server
+            typescript
+
             sqls
 
             lemminx #xml
