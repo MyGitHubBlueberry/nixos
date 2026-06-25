@@ -10,10 +10,10 @@
     config = {
         environment.systemPackages = with pkgs; [
             eww
-            xorg.xmodmap #for switching right alt
+            xmodmap #for switching right alt
             rofi #app access
-            xfce.thunar #file manager
-            xfce.xfce4-settings
+            thunar #file manager
+            xfce4-settings
             pavucontrol #audio settings
             pulseaudioFull
             wallust #for pretty colors

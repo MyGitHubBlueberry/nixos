@@ -28,7 +28,7 @@
             prismlauncher
             openjdk17
 
-            wineWowPackages.full
+            wineWow64Packages.full
             winetricks
 
             r2modman #mods for risk of rain

@@ -32,10 +32,10 @@ in
                 fi
             '';
         };
-        services.logind = lib.mkForce {
-            lidSwitch = "ignore";
-            lidSwitchDocked = "ignore";
-            lidSwitchExternalPower = "ignore";
+        services.logind.settings.Login = lib.mkForce {
+            HandleLidSwitch = "ignore";
+            HandleLidSwitchDocked = "ignore";
+            HandleLidSwitchExternalPower = "ignore";
         };
 
 

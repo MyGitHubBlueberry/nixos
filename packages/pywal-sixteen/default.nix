@@ -7,7 +7,7 @@
   buildPythonPackage,
   fetchPypi,
   imagemagick,
-  swww, #feh
+  awww, #feh
   ...
 }:
 

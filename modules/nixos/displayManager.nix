@@ -25,9 +25,8 @@
       }
     ];
 
-    services.xserver.displayManager.gdm = lib.mkIf config.displayManager.gdm.enable {
+    services.displayManager.gdm = lib.mkIf config.displayManager.gdm.enable {
       enable = true;
-      wayland = true; # todo
       banner = "NixOS, btw...";
       autoSuspend = true;
     };

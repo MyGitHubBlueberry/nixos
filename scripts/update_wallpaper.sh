@@ -49,7 +49,7 @@ restart() {
         xrdb ~/.Xresources
         i3-msg reload
     else
-        swww img "$wallpaper" -t center #--transition-step 20 --transition-fps 20 -t center
+        awww img "$wallpaper" -t center #--transition-step 20 --transition-fps 20 -t center
         makoctl reload
     fi
     pkill rofi

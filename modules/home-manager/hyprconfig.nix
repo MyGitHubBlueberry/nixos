@@ -36,6 +36,7 @@
       };
       wayland.windowManager.hyprland = {
           enable = true;
+          systemd.variables = ["--all"];
           xwayland.enable = true;
 
           settings = {
@@ -67,16 +68,13 @@
                   gaps_out = 5;
                   border_size = 2;
                   "col.active_border" = "$color14 $color12 $color11 $color12 $color14 45deg";
-# "col.active_border" = "$color15";#"rgba(ffffffee)";
                   "col.inactive_border" = "$color8";
 
                   layout = "dwindle";
 
-# Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
                   allow_tearing = false;
               };
 
-# See https://wiki.hyprland.org/Configuring/Variables/ for more
               decoration = {
                   dim_inactive = true;
                   dim_strength = 0.1;
@@ -107,12 +105,6 @@
                   ];
               };
 
-              dwindle = {
-# See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-                  pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-                      preserve_split = "yes"; # you probably want this
-              };
-
               misc = {
 # See https://wiki.hyprland.org/Configuring/Variables/ for more
                   force_default_wallpaper = 0; #-1; # Set to 0 to disable the anime mascot wallpapers
@@ -124,14 +116,6 @@
 
               "$mod" = "Alt";
 
-              # "$mod, h, movefocus, l"
-              #     "$mod, l, movefocus, r"
-              #     "$mod, k, movefocus, u"
-              #     "$mod, j, movefocus, d"
-                      # "$mod SHIFT, h, swapwindow, ~/nixosscriptshypr_groups.sh l"
-                      # "$mod SHIFT, l, swapwindow, ~/nixosscriptshypr_groups.sh r"
-                      # "$mod SHIFT, k, swapwindow, ~/nixosscriptshypr_groups.sh u"
-                      # "$mod SHIFT, j, swapwindow, ~/nixosscriptshypr_groups.sh d"
               bind =
                   [
                   "$mod, h, exec, ~/nixos/scripts/hypr_groups.sh focus l"
@@ -145,7 +129,7 @@
                       "$mod SHIFT, j, exec, ~/nixos/scripts/hypr_groups.sh move d"
 
                       "$mod, Tab, workspace, previous"
-                      "$mod, s, togglesplit"
+                      "$mod, s, layoutmsg, togglesplit" # Updated this line
                       "$mod, g, togglegroup"
                       "$mod, n, lockactivegroup, toggle"
 
@@ -208,38 +192,14 @@
                       "hyprctl dispatch focuswindow class:^org\.telegram\.desktop$ && hyprctl dispatch togglegroup && hyprctl dispatch focuswindow discord && hyprctl dispatch changegroupactive f && hyprctl dispatch lockactivegroup lock"
               ];
 
-              "$scratchpad" = "class:^(scratchpad)$";
+                "$scratchpad" = "match:class ^(scratchpad)$";
 
-              windowrule = [
-                  "float,$scratchpad"
-              ];
-
-              windowrulev2 = [
-                  "workspace special silent,$scratchpad"
-              ];
+                windowrule = [
+                    "float 1, $scratchpad"
+                    "workspace special:magic silent, $scratchpad"
+                ];
           };
 
-
-              # bind = $mod, g, submap, group
-              #
-              # submap = group
-              #
-              # bind = , g, togglegroup
-              # bind = , j, changegroupactive, b
-              # bind = , k, changegroupactive, f
-              # bind = SHIFT, j, movegroupwindow, b
-              # bind = SHIFT, k, movegroupwindow, f
-              #
-              # bind = $mod, h, movewindoworgroup, l
-              # bind = $mod, k, movewindoworgroup, u
-              # bind = $mod, j, movewindoworgroup, d
-              # bind = $mod, l, movewindoworgroup, r
-              #
-              # bind = , Return, submap, reset
-              # bind = , Escape, submap, reset
-              # bind = $mod, g, submap, reset
-              #
-              # submap = reset
           extraConfig = ''
               bind = $mod, U, submap, update
               bind = $mod, U, exec, eww update open_update_menu=true
