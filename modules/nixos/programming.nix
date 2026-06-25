@@ -4,6 +4,10 @@
     options.programming.enable = lib.mkEnableOption "add packages for programming";
 
     config = lib.mkIf config.programming.enable {
+        services.mysql = {
+          enable = true;
+          package = pkgs.mariadb;
+        };
         environment.systemPackages = with pkgs; [
             btop
             tree
@@ -37,6 +41,9 @@
             lua-language-server
             bash-language-server
             nodejs_22
+            angular-language-server
+            tailwindcss
+            tailwindcss-language-server
 
             cargo
             rust-analyzer
@@ -44,6 +51,7 @@
             rustc
             rustlings
 
+            dotnet-ef
             dotnet-sdk_9
             csharp-ls
 
@@ -56,6 +64,12 @@
             sqls
 
             lemminx #xml
+        ];
+
+        programs.nix-ld.enable = true;
+        programs.nix-ld.libraries = with pkgs; [
+          stdenv.cc.cc
+          zlib
         ];
 
         environment.sessionVariables = {
