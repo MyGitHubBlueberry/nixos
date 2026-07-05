@@ -1,7 +1,7 @@
 { lib, config, ... }:
 
 let
-cfg = config.windowManager;
+    cfg = config.windowManager;
 in
 {
     config = lib.mkIf cfg.enable {
@@ -22,6 +22,5 @@ in
             powerKey = "suspend-then-hibernate";
             lidSwitch = "suspend-then-hibernate";
         };
-
     };
 }

@@ -8,6 +8,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";
+        caelestia-shell = {
+            url = "github:caelestia-dots/shell";
+            inputs.nixpkgs.follows = "nixpkgs"; 
+        };
     };
 
     outputs = { self, nixpkgs, home-manager, ... }@inputs:

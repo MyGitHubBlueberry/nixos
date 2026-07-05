@@ -7,6 +7,9 @@
     };
 
     config = lib.mkIf config.mako.enable {
+        home.packages = [ 
+            pkgs.libnotify 
+        ];
         services.mako = {
             enable = true;
 
@@ -15,10 +18,6 @@
             maxVisible = 3;
             
             defaultTimeout = 10000;
-
-            # backgroundColor = "#${base00}";
-            # borderColor = "#${base0E}";
-            # textColor = "#${base0F}";
 
             borderRadius = 5;
             borderSize = 2;

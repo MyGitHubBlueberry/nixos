@@ -101,6 +101,7 @@
       environment.systemPackages = with pkgs; [
           kitty
           telegram-desktop
+          whatsapp-electron
           brave
           librewolf 
           vivaldi

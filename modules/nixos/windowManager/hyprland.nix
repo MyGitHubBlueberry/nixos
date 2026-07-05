@@ -49,12 +49,9 @@ in
           };
 
           systemPackages = with pkgs; [
+              awww #wallpaper
               pyprland
-              swww #wallpaper
               socat #for eww
-              mako #notifications
-              libnotify #mako dependency
-#screenshots
               grim
               slurp
               jq

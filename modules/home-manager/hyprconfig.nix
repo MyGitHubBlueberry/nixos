@@ -8,8 +8,9 @@
 
 
     config = lib.mkIf config.hyprconfig.enable {
+        mako.enable = !config.caelestia.enable;
         services.hypridle = {
-            enable = false;
+            enable = true;
             settings = {
                 general = {
                     after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -19,17 +20,17 @@
 
                 listener = [
                     {
+                        timeout = 90;
+                        on-timeout = "hyprctl dispatch dpms off";
+                        on-resume = "hyprctl dispatch dpms on";
+                    }
+                    {
                         timeout = 120;
                         on-timeout = "hyprlock";
                     }
                     {
                         timeout = 180;
-                        on-timeout = "hyprctl dispatch dpms off";
-                        on-resume = "hyprctl dispatch dpms on";
-                    }
-                    {
-                        timeout = 240;
-                        on-timeout = "systemctl suspend-then-hibernate";
+                        on-timeout = "systemctl suspend";
                     }
                 ];
             };
@@ -49,10 +50,7 @@
 
               input = {
                   kb_layout = "us, ua";
-# kb_variant =
-# kb_model =
                   kb_options = "grp:win_space_toggle, MOD5:alt";
-# kb_rules = 
 
                   follow_mouse = 0;
 
@@ -78,6 +76,7 @@
               decoration = {
                   dim_inactive = true;
                   dim_strength = 0.1;
+                  rounding = 15;
                   blur = {
                       enabled = true;
                       size = 3;
@@ -91,95 +90,91 @@
 
               animations = {
                   enabled = "yes";
-
-# Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
                   bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
                   animation = [
                       "windows, 1, 7, myBezier"
-                          "windowsOut, 1, 7, default, popin 80%"
-                          "border, 1, 10, default"
-                          "borderangle, 1, 8, default"
-                          "fade, 1, 7, default"
-                          "workspaces, 1, 6, default"
+                      "windowsOut, 1, 7, default, popin 80%"
+                      "border, 1, 10, default"
+                      "borderangle, 1, 8, default"
+                      "fade, 1, 7, default"
+                      "workspaces, 1, 6, default"
                   ];
               };
 
               misc = {
-# See https://wiki.hyprland.org/Configuring/Variables/ for more
-                  force_default_wallpaper = 0; #-1; # Set to 0 to disable the anime mascot wallpapers
-
-                      disable_splash_rendering = true;
+                  force_default_wallpaper = 0;
+                  disable_splash_rendering = true;
                   disable_hyprland_logo = true;
 
               };
 
               "$mod" = "Alt";
 
-              bind =
-                  [
+              bind = [
                   "$mod, h, exec, ~/nixos/scripts/hypr_groups.sh focus l"
                   "$mod, l, exec, ~/nixos/scripts/hypr_groups.sh focus r"
                   "$mod, k, exec, ~/nixos/scripts/hypr_groups.sh focus u"
                   "$mod, j, exec, ~/nixos/scripts/hypr_groups.sh focus d"
 
-                      "$mod SHIFT, h, exec, ~/nixos/scripts/hypr_groups.sh move l"
-                      "$mod SHIFT, l, exec, ~/nixos/scripts/hypr_groups.sh move r"
-                      "$mod SHIFT, k, exec, ~/nixos/scripts/hypr_groups.sh move u"
-                      "$mod SHIFT, j, exec, ~/nixos/scripts/hypr_groups.sh move d"
+                  "$mod SHIFT, h, exec, ~/nixos/scripts/hypr_groups.sh move l"
+                  "$mod SHIFT, l, exec, ~/nixos/scripts/hypr_groups.sh move r"
+                  "$mod SHIFT, k, exec, ~/nixos/scripts/hypr_groups.sh move u"
+                  "$mod SHIFT, j, exec, ~/nixos/scripts/hypr_groups.sh move d"
 
-                      "$mod, Tab, workspace, previous"
-                      "$mod, s, layoutmsg, togglesplit" # Updated this line
-                      "$mod, g, togglegroup"
-                      "$mod, n, lockactivegroup, toggle"
+                  "$mod, Tab, workspace, previous"
+                  "$mod, s, layoutmsg, togglesplit" # Updated this line
+                  "$mod, g, togglegroup"
+                  "$mod, n, lockactivegroup, toggle"
 
-                      "$mod, Escape, exec, ~/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
-                      "$mod, Space, exec, ~/nixos/dotfiles/rofi/launcher/launcher.sh" 
-                      "$mod, T, exec, kitty"
-                      "$mod, Q, killactive"
-                      "$mod SHIFT, Q, exit"
-                      "$mod, E, exec, dolphin"
-                      "$mod, F, togglefloating"
-                      "$mod, R, exec, wofi --show drun"
-# "$mod, P, pseudo"
-                      "$mod, Return, fullscreen"
-                      "$mod SHIFT, Return, fullscreenstate, 0 2"
-                      "$mod, backslash, togglespecialworkspace, magic"
-                      "$mod SHIFT, backslash, movetoworkspace, special:magic"
-                      "$mod, bracketleft, workspace, e-1"
-                      "$mod, bracketright, workspace, e+1"
-                      "$mod, w, exec, bash ~/nixos/scripts/update_wallpaper.sh"
-                      "$mod, c, exec, bash ~/nixos/dotfiles/rofi/applets/screenshot.sh"
-                      "$mod, equal, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+"
-                      "$mod, minus, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-"
-                      "$mod, v, exec, pypr toggle volume"
-# "$mod, u, exec, pypr show update"
-                      ",XF86MonBrightnessUp, exec, brightnessctl s +5%"
-                      ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-                      "$mod, u, exec, exec eww update open_update_menu=true"
-                      ]
-                      ++ (
-# workspaces
-# binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-                              builtins.concatLists (builtins.genList (
-                                      x: let
-                                      ws = 
-                                      let
-                                      c = (x + 1) / 10;
-                                      in
-                                      builtins.toString (x + 1 - (c * 10));
-                                      in 
-                                      [
-                                      "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                                      "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-                                      "MOD5, ${ws}, workspace, ${toString (x + 1)}"
-                                      "MOD5 SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-                                      ]
-                                      ) 10)
-                         );
+                  "$mod, T, exec, kitty"
+                  "$mod, Q, killactive"
+                  "$mod SHIFT, Q, exit"
+                  "$mod, E, exec, thunar"
+                  "$mod, F, togglefloating"
+                  "$mod, Return, fullscreen"
+                  "$mod SHIFT, Return, fullscreenstate, 0 2"
+                  "$mod, backslash, togglespecialworkspace, magic"
+                  "$mod SHIFT, backslash, movetoworkspace, special:magic"
+                  "$mod, bracketleft, workspace, e-1"
+                  "$mod, bracketright, workspace, e+1"
+                  "$mod, equal, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%+"
+                  "$mod, minus, exec, wpctl set-volume -l 1.5 @DEFAULT_SINK@ 5%-"
+                  "$mod, v, exec, pypr toggle volume"
+                  "$mod, u, exec, exec eww update open_update_menu=true"
+                  ",XF86MonBrightnessUp, exec, brightnessctl s +5%"
+                  ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+                  "SUPER, l, exec, loginctl lock-session"
+              ] ++ (if config.caelestia.enable then [
+                  "$mod, Space, exec, caelestia shell drawers toggle launcher" 
+                  "$mod, Escape, exec, caelestia shell drawers toggle session" 
+                  "$mod, C, exec, caelestia shell picker openFreezeClip"
+                  "$mod, N, exec, caelestia shell drawers toggle notifications"
+                  "$mod, Page_Down, exec, caelestia hypr cycleSpecialWorkspace next"
+                  "$mod, Page_Up, exec, caelestia hypr cycleSpecialWorkspace prev"
+                  "$mod, w, exec, caelestia wallpaper -r"
+              ] else [
+                  "$mod, Space, exec, ~/nixos/dotfiles/rofi/launcher/launcher.sh" 
+                  "$mod, Escape, exec, ~/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
+                  "$mod, c, exec, bash ~/nixos/dotfiles/rofi/applets/screenshot.sh"
+                  "$mod, N, exec, makoctl dismiss"
+                  "$mod, w, exec, bash ~/nixos/scripts/update_wallpaper.sh"
+              ]) ++ (
+                  builtins.concatLists(builtins.genList(
+                      x: let ws = 
+                              let 
+                                  c = (x + 1) / 10;
+                              in
+                              builtins.toString (x + 1 - (c * 10));
+                          in 
+                          [
+                              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+                              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                              "MOD5, ${ws}, workspace, ${toString (x + 1)}"
+                              "MOD5 SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                          ]) 10));
               bindm = [
                   "$mod, mouse:272, movewindow"
-                      "$mod, mouse:273, resizewindow"
+                  "$mod, mouse:273, resizewindow"
               ];
 
               exec-once = [
@@ -189,7 +184,6 @@
                       "[workspace 2 silent] Telegram"
                       "[workspace 2 silent] discord"
                       "[workspace 7 silent] thunderbird"
-                      "hyprctl dispatch focuswindow class:^org\.telegram\.desktop$ && hyprctl dispatch togglegroup && hyprctl dispatch focuswindow discord && hyprctl dispatch changegroupactive f && hyprctl dispatch lockactivegroup lock"
               ];
 
                 "$scratchpad" = "match:class ^(scratchpad)$";

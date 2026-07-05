@@ -9,26 +9,26 @@
     ];
     config = {
         environment.systemPackages = with pkgs; [
-            eww
             xmodmap #for switching right alt
             rofi #app access
             thunar #file manager
             xfce4-settings
             pavucontrol #audio settings
             pulseaudioFull
-            wallust #for pretty colors
             swappy #for viewing pictures
             ssh-askpass-fullscreen #verification for system update
-            jq #for scripts and eww
+            jq
             pamixer #for and eww
-            gnome-control-center #for and eww
             gnome-clocks
             gnome-calculator
             gnome-calendar
             brightnessctl
+            eww
+            gnome-control-center
         ];
         #for thunar
         services.gvfs.enable = true; # Mount, trash, and other functionalities
         services.tumbler.enable = true; # Thumbnail support for images
+        programs.gpu-screen-recorder.enable = true; # for caelestia shell
     };
 }

@@ -30,4 +30,5 @@
             ];
     };
     hyprconfig.enable = true;
+    caelestia.enable = true;
 }
