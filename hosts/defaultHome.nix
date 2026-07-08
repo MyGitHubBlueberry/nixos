@@ -15,24 +15,27 @@ let
             echo -ne "\a"
         }
     '';
+    sourceCaelestiaColorScheme = ''
+        if [[ -f "$HOME/.local/state/caelestia/sequences.txt" ]]; then
+            cat "$HOME/.local/state/caelestia/sequences.txt"
+        fi
+    '';
 in
 
 {
     imports = [
         ../modules/home-manager/hyprconfig.nix
         ../modules/home-manager/notifications/mako.nix
-        inputs.caelestia-shell.homeManagerModules.default
+        ../modules/home-manager/notifications/dunst.nix
         ../modules/home-manager/caelestia-shell.nix
+        ../modules/home-manager/wallust.nix
+        ../modules/home-manager/kitty.nix
+        inputs.caelestia-shell.homeManagerModules.default
     ];
 
     home.file = {
         ".config/swappy/config".source = ../dotfiles/swappy;
         ".config/hypr/pyprland.toml".source = ../dotfiles/pyprland.toml;
-    };
-
-    home.sessionVariables = {
-        TERM = "kitty";
-        TERMINAL = "kitty";
     };
 
     home.pointerCursor = {
@@ -75,7 +78,7 @@ in
         bash = {
             enable = true;
             shellAliases = myAliases;
-            initExtra = notifyWhenFinished;
+            initExtra = notifyWhenFinished + sourceCaelestiaColorScheme;
         };
 
         zsh = {
@@ -83,7 +86,7 @@ in
             shellAliases = myAliases;
             autosuggestion.enable = true;
             enableCompletion = true;
-            initContent = notifyWhenFinished;
+            initContent = notifyWhenFinished + sourceCaelestiaColorScheme;
         };
 
         starship.enable = true;
@@ -94,6 +97,7 @@ in
             userEmail = "MyGitHubBlueberry@gmail.com";
         };
     };
+    kitty.enable = true;
 
     nixpkgs.config.allowUnfree = true;
     programs.home-manager.enable = true;

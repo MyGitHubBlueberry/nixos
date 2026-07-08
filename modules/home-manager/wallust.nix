@@ -1,5 +1,7 @@
 { lib, config, ... }:
-
+let
+  templatesDir = ../../dotfiles/wallust/templates;
+in
 {
     options = {
         wallust.enable 
@@ -17,7 +19,7 @@
             templates = lib.mkMerge [
             {
                 hyprland = {
-                    src = "colors-hyprland.conf";
+                    src = "${templatesDir}/colors-hyprland.conf";
                     dst = "~/nixos/modules/home-manager/colors-hyprland.conf";
                     pywal = true;
                 };
@@ -25,46 +27,46 @@
 
             (lib.mkIf (!config.caelestia.enable) {
              colors = {
-                 src = "colors.sh";
+                 src = "${templatesDir}/colors.sh";
                  dst = "~/.cache/wallust/colors.sh";
                  pywal = true; 
              };
              kitty = {
-                 src = "colors-kitty.conf";
-                 dst = "~/.config/kitty/kitty.conf";
+                 src = "${templatesDir}/colors-kitty.conf";
+                 dst = "~/.cache/wallust/colors-kitty.conf";
                  pywal = true;
              };
              rofi = {
-                 src = "colors-rofi.rasi";
+                 src = "${templatesDir}/colors-rofi.rasi";
                  dst = "~/nixos/dotfiles/rofi/colors.rasi";
                  pywal = false;
              };
              xresources = {
-                 src = "colors.Xresources";
+                 src = "${templatesDir}/colors.Xresources";
                  dst = "~/.cache/wallust/colors.Xresources";
                  pywal = true;
              };
              scss = {
-                 src = "colors.scss";
+                 src = "${templatesDir}/colors.scss";
                  dst = "~/.config/eww/scripts/colors/my_colors.scss";
                  pywal = true;
              };
              eww = {
-                 src = "eww-template.scss";
+                 src = "${templatesDir}/eww-template.scss";
                  dst = "~/.config/eww/scripts/colors/template.scss";
                  pywal = true;
              };
             })
             (lib.mkIf (config.mako.enable) {
                  mako = {
-                     src = "mako";
+                     src = "${templatesDir}/mako";
                      dst = "~/.config/mako/config";
                      pywal = true;
                  };
             })
             (lib.mkIf (config.dunst.enable) {
                  dunst = {
-                     src = "dunst";
+                     src = "${templatesDir}/dunst";
                      dst = "~/.config/dunst/dunstrc";
                      pywal = true;
                  };

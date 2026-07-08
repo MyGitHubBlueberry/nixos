@@ -31,4 +31,5 @@
     };
     hyprconfig.enable = true;
     caelestia.enable = true;
+    wallust.enable = true;
 }

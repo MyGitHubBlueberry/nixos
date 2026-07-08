@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
     options.windowManager.enable = lib.mkEnableOption "enable window manager";
@@ -7,6 +7,7 @@
         ./i3.nix
         ./sleep.nix
     ];
+
     config = {
         environment.systemPackages = with pkgs; [
             xmodmap #for switching right alt

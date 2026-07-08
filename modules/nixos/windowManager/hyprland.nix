@@ -40,7 +40,7 @@ in
     {
       programs = {
           hyprland.enable = true;
-          hyprlock.enable = true;
+          hyprlock.enable = false; # todo: enable if caelestia is not enabled
       };
 
       environment = {

@@ -15,7 +15,7 @@
                 general = {
                     after_sleep_cmd = "hyprctl dispatch dpms on";
                     ignore_dbus_inhibit = false;
-                    lock_cmd = "hyprlock";
+                    lock_cmd = "caelestia shell lock lock";  #todo: when merged iwth system make it an if statement between that and hyprlock
                 };
 
                 listener = [
@@ -26,7 +26,7 @@
                     }
                     {
                         timeout = 120;
-                        on-timeout = "hyprlock";
+                        on-timeout = "loginctl lock-session";
                     }
                     {
                         timeout = 180;
@@ -151,7 +151,7 @@
                   "$mod, N, exec, caelestia shell drawers toggle notifications"
                   "$mod, Page_Down, exec, caelestia hypr cycleSpecialWorkspace next"
                   "$mod, Page_Up, exec, caelestia hypr cycleSpecialWorkspace prev"
-                  "$mod, w, exec, caelestia wallpaper -r"
+                  "$mod, w, exec, ~/nixos/scripts/random_wallpaper_caelestia.sh"
               ] else [
                   "$mod, Space, exec, ~/nixos/dotfiles/rofi/launcher/launcher.sh" 
                   "$mod, Escape, exec, ~/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
@@ -178,20 +178,21 @@
               ];
 
               exec-once = [
-                      "bash ~/nixos/scripts/hyprland.sh"
-                      "pypr"
-                      "[workspace 1 silent] brave --use-gl=desktop"
-                      "[workspace 2 silent] Telegram"
-                      "[workspace 2 silent] discord"
-                      "[workspace 7 silent] thunderbird"
+                  "pypr"
+                  "[workspace 1 silent] brave --use-gl=desktop"
+                  "[workspace 2 silent] Telegram"
+                  "[workspace 2 silent] discord"
+                  "[workspace 7 silent] thunderbird"
+              ] ++ lib.optionals (!config.caelestia.enable) [
+                  "bash ~/nixos/scripts/hyprland.sh"
               ];
 
-                "$scratchpad" = "match:class ^(scratchpad)$";
+              "$scratchpad" = "match:class ^(scratchpad)$";
 
-                windowrule = [
-                    "float 1, $scratchpad"
-                    "workspace special:magic silent, $scratchpad"
-                ];
+              windowrule = [
+                  "float 1, $scratchpad"
+                      "workspace special:magic silent, $scratchpad"
+              ];
           };
 
           extraConfig = ''
