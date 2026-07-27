@@ -30,6 +30,8 @@ in
         ../modules/home-manager/caelestia-shell.nix
         ../modules/home-manager/wallust.nix
         ../modules/home-manager/kitty.nix
+        ../modules/home-manager/programming.nix
+        ../modules/home-manager/wm-apps.nix
         inputs.caelestia-shell.homeManagerModules.default
     ];
 
@@ -37,6 +39,20 @@ in
         ".config/swappy/config".source = ../dotfiles/swappy;
         ".config/hypr/pyprland.toml".source = ../dotfiles/pyprland.toml;
     };
+
+    home.packages = with pkgs; [
+        telegram-desktop
+        whatsapp-electron
+        brave
+    ];
+
+    home.sessionVariables = {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+        XCURSOR_SIZE = "16";
+    };
+
+    fonts.fontconfig.enable = true;
 
     home.pointerCursor = {
         gtk.enable = true;
@@ -93,8 +109,8 @@ in
 
         git = {
             enable = true;
-            userName  = "MyGitHubBlueberry";
-            userEmail = "MyGitHubBlueberry@gmail.com";
+            settings.user.name  = "MyGitHubBlueberry";
+            settings.user.email = "MyGitHubBlueberry@gmail.com";
         };
     };
     kitty.enable = true;

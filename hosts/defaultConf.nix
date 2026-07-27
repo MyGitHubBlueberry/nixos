@@ -90,22 +90,12 @@
 
       programs.neovim.enable = true;
       programs.neovim.defaultEditor = true;
-      environment.variables.EDITOR = "nvim";
-      environment.variables.VISUAL = "nvim";
-      environment.variables.XCURSOR_SIZE = "16";
 
       programs.zsh.enable = true;
       environment.shells = with pkgs; [ zsh ];
       users.defaultUserShell = pkgs.zsh;
 
       environment.systemPackages = with pkgs; [
-          kitty
-          telegram-desktop
-          whatsapp-electron
-          brave
-          librewolf 
-          vivaldi
-
           xclip
           wl-clipboard
       ];

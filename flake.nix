@@ -12,12 +12,15 @@
             url = "github:caelestia-dots/shell";
             inputs.nixpkgs.follows = "nixpkgs"; 
         };
+        antigravity-nix = {
+            url = "github:jacopone/antigravity-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    outputs = { self, nixpkgs, home-manager, antigravity-nix, ... }@inputs:
     let
         system = "x86_64-linux";
-        lib = nixpkgs.lib;
         pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
@@ -33,6 +36,11 @@
               modules = [
                   config
                   ./hosts/defaultConf.nix
+                  {
+                      environment.systemPackages = [
+                          antigravity-nix.packages.x86_64-linux.google-antigravity-cli
+                      ];
+                  }
               ];
             };
         mkHome = config:

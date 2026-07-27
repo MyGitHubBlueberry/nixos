@@ -32,4 +32,6 @@
     hyprconfig.enable = true;
     caelestia.enable = true;
     wallust.enable = true;
+    programming.enable = true;
+    wmApps.enable = true;
 }

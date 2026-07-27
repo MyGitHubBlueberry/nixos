@@ -10,22 +10,11 @@
 
     config = {
         environment.systemPackages = with pkgs; [
-            xmodmap #for switching right alt
-            rofi #app access
-            thunar #file manager
-            xfce4-settings
-            pavucontrol #audio settings
-            pulseaudioFull
-            swappy #for viewing pictures
-            ssh-askpass-fullscreen #verification for system update
+            xmodmap             # keyboard remapping
+            ssh-askpass-fullscreen # verification for system update
             jq
-            pamixer #for and eww
-            gnome-clocks
-            gnome-calculator
-            gnome-calendar
+            pamixer             # for eww
             brightnessctl
-            eww
-            gnome-control-center
         ];
         #for thunar
         services.gvfs.enable = true; # Mount, trash, and other functionalities

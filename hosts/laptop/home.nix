@@ -19,5 +19,7 @@
     services.mpris-proxy.enable = true;
 
     hyprconfig.enable = true;
+    programming.enable = true;
+    wmApps.enable = true;
     # autorandr.laptopDocStation.enable = true;
 }
