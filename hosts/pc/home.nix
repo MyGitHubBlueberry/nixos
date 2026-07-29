@@ -2,27 +2,14 @@
 
 {
     home.packages = with pkgs; [
-        slack
-        (discord.override {
-             withVencord = true;
-        })
-
-        vlc
-
+        teams-for-linux
         thunderbird #email
-
-        spotube
-        spotify
 
         onlyoffice-desktopeditors
         todo
 
         obs-studio
-        teams-for-linux
         zoom-us
-
-        jetbrains.rider
-        avalonia
     ];
 
     hyprconfig.enable = true;

@@ -44,6 +44,10 @@ in
         telegram-desktop
         whatsapp-electron
         brave
+        vlc
+        (discord.override {
+             withVencord = true;
+        })
     ];
 
     home.sessionVariables = {
