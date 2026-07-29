@@ -43,11 +43,15 @@
                   }
               ];
             };
-        mkHome = config:
+        mkHome = { user, hostModule }:
             home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               extraSpecialArgs = { inherit inputs; };
-              modules = [ config ./hosts/defaultHome.nix];
+              modules = [
+                  ./hosts/defaultHome.nix
+                  ./users/${user}
+                  hostModule
+              ];
             };
     in {
         nixosConfigurations = {
@@ -55,8 +59,10 @@
             laptop = mkSystem ./hosts/laptop/configuration.nix;
         }; 
         homeConfigurations = {
-            "maksi@pc" = mkHome ./hosts/pc/home.nix;
-            "maksi@laptop" = mkHome ./hosts/laptop/home.nix;
+            "maksi@pc" = mkHome { user = "maksi"; hostModule = ./hosts/pc/home.nix; };
+            "vova@pc" = mkHome { user = "vova"; hostModule = ./hosts/pc/home.nix; };
+            "maksi@laptop" = mkHome { user = "maksi"; hostModule = ./hosts/laptop/home.nix; };
+            "vova@laptop" = mkHome { user = "vova"; hostModule = ./hosts/laptop/home.nix; };
         };
     };
 }

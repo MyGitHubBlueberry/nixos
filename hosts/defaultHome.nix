@@ -63,7 +63,7 @@ in
     };
 
     xresources.extraConfig = ''
-#include "/home/maksi/.cache/wallust/colors.Xresources"
+#include "${config.home.homeDirectory}/.cache/wallust/colors.Xresources"
         '';    
 
     gtk = {
@@ -109,8 +109,6 @@ in
 
         git = {
             enable = true;
-            settings.user.name  = "MyGitHubBlueberry";
-            settings.user.email = "MyGitHubBlueberry@gmail.com";
         };
     };
     kitty.enable = true;

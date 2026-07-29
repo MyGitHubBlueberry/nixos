@@ -15,6 +15,8 @@
         enable = true;
         i3.enable = true;
     };
+    services.desktopManager.plasma6.enable = true;
+    services.power-profiles-daemon.enable = false;
     displayManager.gdm.enable = true;
 
     environment.systemPackages = with pkgs; [ ];

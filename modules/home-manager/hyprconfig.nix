@@ -42,7 +42,7 @@
           xwayland.enable = true;
 
           settings = {
-              source = "/home/maksi/nixos/modules/home-manager/colors-hyprland.conf";
+              source = "${config.home.homeDirectory}/nixos/modules/home-manager/colors-hyprland.conf";
 
               monitor = [
                   ",1920x1080@120,auto,1"
@@ -202,11 +202,11 @@
 
               submap = update
 
-              bind = , H, exec, /home/maksi/nixos/scripts/update_home.sh; eww update open_update_menu=false
+              bind = , H, exec, ${config.home.homeDirectory}/nixos/scripts/update_home.sh; eww update open_update_menu=false
               bind = , H, submap, reset
-              bind = , F, exec, /home/maksi/nixos/scripts/update_flake.sh; eww update open_update_menu=false
+              bind = , F, exec, ${config.home.homeDirectory}/nixos/scripts/update_flake.sh; eww update open_update_menu=false
               bind = , F, submap, reset
-              bind = , S, exec, /home/maksi/nixos/scripts/update_nixos.sh; eww update open_update_menu=false
+              bind = , S, exec, ${config.home.homeDirectory}/nixos/scripts/update_nixos.sh; eww update open_update_menu=false
               bind = , S, submap, reset
               bind = , Return, exec, eww update open_update_menu=false
               bind = , Return, submap, reset

@@ -20,6 +20,6 @@
               };
           };
 
-          users.extraGroups.vboxusers.members = [ "maksi" ];
+          users.extraGroups.vboxusers.members = [ "maksi" "vova" ];
     };
 }

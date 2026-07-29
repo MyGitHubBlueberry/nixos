@@ -79,8 +79,12 @@
           isNormalUser = true; 
           description = "maksi"; 
           extraGroups = [ "networkmanager" "wheel" "input" ];
-          packages = with pkgs; [
-          ];
+      };
+
+      users.users.vova = { 
+          isNormalUser = true; 
+          description = "vova"; 
+          extraGroups = [ "networkmanager" "wheel" "input" ];
       };
 
       programs.dconf.enable = true;
