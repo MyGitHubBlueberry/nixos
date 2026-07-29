@@ -20,7 +20,7 @@ in
             {
                 hyprland = {
                     src = "${templatesDir}/colors-hyprland.conf";
-                    dst = "~/nixos/modules/home-manager/colors-hyprland.conf";
+                    dst = "/etc/nixos/modules/home-manager/colors-hyprland.conf";
                     pywal = true;
                 };
             }
@@ -38,7 +38,7 @@ in
              };
              rofi = {
                  src = "${templatesDir}/colors-rofi.rasi";
-                 dst = "~/nixos/dotfiles/rofi/colors.rasi";
+                 dst = "/etc/nixos/dotfiles/rofi/colors.rasi";
                  pywal = false;
              };
              xresources = {

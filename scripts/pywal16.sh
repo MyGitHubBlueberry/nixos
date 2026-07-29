@@ -2,7 +2,7 @@
 
 source "$HOME/.cache/wallust/colors.sh"
 
-~/nixos/packages/pywal-sixteen/result/bin/wal -i $wallpaper -s --cols16
+/etc/nixos/packages/pywal-sixteen/result/bin/wal -i $wallpaper -s --cols16
 
 
 

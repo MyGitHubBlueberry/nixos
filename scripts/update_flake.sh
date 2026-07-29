@@ -4,7 +4,7 @@ icon="$HOME/Pictures/Icons/flake.svg"
 app="Flake"
 preupdate_time=3
 update_time=10
-raw_message=$(nix flake update --flake $HOME/nixos > /tmp/flake_output 2>&1) &
+raw_message=$(nix flake update --flake /etc/nixos > /tmp/flake_output 2>&1) &
 pid=$!
 
 

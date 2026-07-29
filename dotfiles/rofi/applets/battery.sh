@@ -6,7 +6,7 @@
 ## Applets : Battery
 
 # Import Current Theme
-source "$HOME"/nixos/dotfiles/rofi/applets/shared/theme.bash
+source /etc/nixos/dotfiles/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
 # Battery Info

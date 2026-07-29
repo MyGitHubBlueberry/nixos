@@ -4,7 +4,7 @@ source "$(dirname "$0")/notification_functions.sh"
 
 main() {
     # Run the command in the background and capture the output
-    local home_manager_msg=$(home-manager switch --flake "$HOME/nixos#$(whoami)@$(hostname)" 2>&1 > /tmp/home_manager_output) &
+    local home_manager_msg=$(home-manager switch --flake "path:/etc/nixos#$(whoami)@$(hostname)" 2>&1 > /tmp/home_manager_output) &
     pid=$!
 
     local icon="$HOME/Pictures/Icons/home-manager.svg"

@@ -42,7 +42,7 @@
           xwayland.enable = true;
 
           settings = {
-              source = "${config.home.homeDirectory}/nixos/modules/home-manager/colors-hyprland.conf";
+              source = "/etc/nixos/modules/home-manager/colors-hyprland.conf";
 
               monitor = [
                   ",1920x1080@120,auto,1"
@@ -112,15 +112,15 @@
               "$mod" = "Alt";
 
               bind = [
-                  "$mod, h, exec, ~/nixos/scripts/hypr_groups.sh focus l"
-                  "$mod, l, exec, ~/nixos/scripts/hypr_groups.sh focus r"
-                  "$mod, k, exec, ~/nixos/scripts/hypr_groups.sh focus u"
-                  "$mod, j, exec, ~/nixos/scripts/hypr_groups.sh focus d"
+                  "$mod, h, exec, /etc/nixos/scripts/hypr_groups.sh focus l"
+                  "$mod, l, exec, /etc/nixos/scripts/hypr_groups.sh focus r"
+                  "$mod, k, exec, /etc/nixos/scripts/hypr_groups.sh focus u"
+                  "$mod, j, exec, /etc/nixos/scripts/hypr_groups.sh focus d"
 
-                  "$mod SHIFT, h, exec, ~/nixos/scripts/hypr_groups.sh move l"
-                  "$mod SHIFT, l, exec, ~/nixos/scripts/hypr_groups.sh move r"
-                  "$mod SHIFT, k, exec, ~/nixos/scripts/hypr_groups.sh move u"
-                  "$mod SHIFT, j, exec, ~/nixos/scripts/hypr_groups.sh move d"
+                  "$mod SHIFT, h, exec, /etc/nixos/scripts/hypr_groups.sh move l"
+                  "$mod SHIFT, l, exec, /etc/nixos/scripts/hypr_groups.sh move r"
+                  "$mod SHIFT, k, exec, /etc/nixos/scripts/hypr_groups.sh move u"
+                  "$mod SHIFT, j, exec, /etc/nixos/scripts/hypr_groups.sh move d"
 
                   "$mod, Tab, workspace, previous"
                   "$mod, s, layoutmsg, togglesplit" # Updated this line
@@ -152,13 +152,13 @@
                   "$mod, N, exec, caelestia shell drawers toggle notifications"
                   "$mod, Page_Down, exec, caelestia hypr cycleSpecialWorkspace next"
                   "$mod, Page_Up, exec, caelestia hypr cycleSpecialWorkspace prev"
-                  "$mod, w, exec, ~/nixos/scripts/random_wallpaper_caelestia.sh"
+                  "$mod, w, exec, /etc/nixos/scripts/random_wallpaper_caelestia.sh"
               ] else [
-                  "$mod, Space, exec, ~/nixos/dotfiles/rofi/launcher/launcher.sh" 
-                  "$mod, Escape, exec, ~/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
-                  "$mod, c, exec, bash ~/nixos/dotfiles/rofi/applets/screenshot.sh"
+                  "$mod, Space, exec, /etc/nixos/dotfiles/rofi/launcher/launcher.sh" 
+                  "$mod, Escape, exec, /etc/nixos/dotfiles/rofi/powermenu/powermenu.sh" 
+                  "$mod, c, exec, bash /etc/nixos/dotfiles/rofi/applets/screenshot.sh"
                   "$mod, N, exec, makoctl dismiss"
-                  "$mod, w, exec, bash ~/nixos/scripts/update_wallpaper.sh"
+                  "$mod, w, exec, bash /etc/nixos/scripts/update_wallpaper.sh"
               ]) ++ (
                   builtins.concatLists(builtins.genList(
                       x: let ws = 
@@ -185,7 +185,7 @@
                   "[workspace 2 silent] discord"
                   "[workspace 7 silent] thunderbird"
               ] ++ lib.optionals (!config.caelestia.enable) [
-                  "bash ~/nixos/scripts/hyprland.sh"
+                  "bash /etc/nixos/scripts/hyprland.sh"
               ];
 
               "$scratchpad" = "match:class ^(scratchpad)$";

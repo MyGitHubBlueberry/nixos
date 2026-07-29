@@ -22,7 +22,7 @@ get_wallpaper() {
 change_mode() {
     case $1 in
         "light")
-            wallust run -C ~/nixos/dotfiles/wallust/wallust-light.toml "$wallpaper"
+            wallust run -C /etc/nixos/dotfiles/wallust/wallust-light.toml "$wallpaper"
             echo "light" > "$cache"
             # eww update current_mode="light"
             ;;
